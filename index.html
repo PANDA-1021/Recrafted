@@ -102,29 +102,31 @@ header.nav{padding:10px 24px}.nav nav a{padding:10px 14px}}
 /* loading screen */
 html.ld,.ld body{overflow:hidden}
 .ld .hero *{animation-play-state:paused}
-#ld{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:100;align-content:center;justify-items:center;background:radial-gradient(90% 70% at 50% 40%,#fffdf6,var(--ivory) 55%,var(--linen));clip-path:circle(150% at 50% 50%)}
-.ldv #ld{display:grid;animation:ldfail .4s 7s forwards}
-#ld.out{clip-path:circle(0% at 50% 50%);transition:clip-path .85s cubic-bezier(.7,0,.2,1)}
+#ld{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(90% 70% at 50% 40%,#fffdf6,var(--ivory) 55%,var(--linen));-webkit-clip-path:circle(150% at 50% 50%);clip-path:circle(150% at 50% 50%);opacity:1}
+.ldv #ld{display:-webkit-flex;display:flex;-webkit-animation:ldfail .4s 7s forwards;animation:ldfail .4s 7s forwards}
+#ld.out{opacity:0;-webkit-clip-path:circle(0% at 50% 50%);clip-path:circle(0% at 50% 50%);transition:clip-path .85s cubic-bezier(.7,0,.2,1),opacity .4s .5s ease-out}
 #ld.out>*{opacity:0;transition:opacity .3s}
-.lm{width:min(38vw,150px);height:auto;overflow:visible}
+.lm{width:130px;width:min(38vw,150px);height:auto;overflow:visible}
 .lm .ring{opacity:0;stroke-dasharray:1 2;stroke-dashoffset:1;animation:rdraw 1.3s .2s cubic-bezier(.6,0,.2,1) forwards}
-.lm .head{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:pop .4s 1.35s cubic-bezier(.3,1.6,.5,1) forwards}
+.lm .head{transform-origin:60px 14px;transform:scale(0);animation:pop .4s 1.35s cubic-bezier(.3,1.6,.5,1) forwards}
 .lm .spin{transform-origin:60px 60px;animation:spin 7s linear 1.8s infinite}
-.lm .lf{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0) rotate(-12deg);animation:leaf .8s cubic-bezier(.3,1.4,.5,1) var(--d) forwards,sway 3s ease-in-out calc(var(--d) + .9s) infinite alternate}
+.lm .lf{transform-origin:60px 90px;transform:scale(0) rotate(-12deg);animation:leaf .8s cubic-bezier(.3,1.4,.5,1) var(--d) forwards,sway 3s ease-in-out calc(var(--d) + .9s) infinite alternate}
 .lm .st{stroke-dasharray:3 3.2;opacity:0;animation:fade .5s 1.7s forwards}
 .lm .stem{opacity:0;animation:fade .3s .8s forwards}
-.wm{display:flex;margin-top:22px;font:400 clamp(2rem,9vw,2.8rem)/1 Georgia,"Times New Roman",serif;letter-spacing:.02em}
+.wm{display:flex;margin-top:22px;font:400 2.2rem/1 Georgia,"Times New Roman",serif;font:400 clamp(2rem,9vw,2.8rem)/1 Georgia,"Times New Roman",serif;letter-spacing:.02em}
 .wm span{display:inline-block;opacity:0;transform:translateY(14px);animation:wl .6s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(1.3s + var(--i)*.07s)}
 .wm .re{font-style:italic;color:var(--moss)}
 .tg{margin:10px 0 0;color:var(--mute);font-size:.9rem;opacity:0;animation:fade .6s 2s forwards}
-.pb{width:min(52vw,200px);height:2px;margin-top:26px;background:var(--line);border-radius:2px;overflow:hidden}
-.pb i{display:block;height:100%;background:var(--moss);transform:scaleX(var(--p,0));transform-origin:left;transition:transform .5s ease-out}
+.pb{width:160px;width:min(52vw,200px);height:2px;margin-top:26px;background:var(--line);border-radius:2px;overflow:hidden}
+.pb i{display:block;height:100%;background:#4f6b43;background:var(--moss);-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transform-origin:left;transform-origin:left;-webkit-transition:-webkit-transform .5s ease-out;transition:transform .5s ease-out}
+.wm span:nth-child(1){animation-delay:1.3s}.wm span:nth-child(2){animation-delay:1.37s}.wm span:nth-child(3){animation-delay:1.44s}.wm span:nth-child(4){animation-delay:1.51s}.wm span:nth-child(5){animation-delay:1.58s}.wm span:nth-child(6){animation-delay:1.65s}.wm span:nth-child(7){animation-delay:1.72s}.wm span:nth-child(8){animation-delay:1.79s}.wm span:nth-child(9){animation-delay:1.86s}
+.lm g.lf:nth-of-type(2){animation:leaf .8s cubic-bezier(.3,1.4,.5,1) .9s forwards,sway 3s ease-in-out 1.8s infinite alternate}.lm g.lf:nth-of-type(3){animation:leaf .8s cubic-bezier(.3,1.4,.5,1) 1.05s forwards,sway 3s ease-in-out 1.95s infinite alternate}
 @keyframes rdraw{to{stroke-dashoffset:0;opacity:1}}@keyframes pop{to{transform:none}}@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes leaf{to{transform:none}}@keyframes sway{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
 @keyframes wl{to{opacity:1;transform:none}}@keyframes ldfail{to{opacity:0;visibility:hidden}}
 </style>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20120%20120%27%3E%3Crect%20width%3D%27120%27%20height%3D%27120%27%20rx%3D%2726%27%20fill%3D%27%23f7f3e8%27/%3E%3Cpath%20d%3D%27M95.2%2030.4A46%2046%200%201%201%2060%2014%27%20fill%3D%27none%27%20stroke%3D%27%231f2a24%27%20stroke-width%3D%279%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M60%2090C32%2086%2026%2060%2036%2042C52%2047%2064%2064%2060%2090Z%27%20fill%3D%27%238fb07b%27/%3E%3Cpath%20d%3D%27M60%2090C90%2085%2096%2056%2084%2036C67%2042%2057%2064%2060%2090Z%27%20fill%3D%27%234f6b43%27/%3E%3C/svg%3E">
-<script>(function(){var h=document.documentElement;if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;h.classList.add("ld","ldv");setTimeout(function(){h.classList.remove("ld","ldv")},8000)})()</script>
+<script>(function(){var h=document.documentElement;if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;h.classList.add("ld");h.classList.add("ldv");setTimeout(function(){h.classList.remove("ld","ldv")},8000)})()</script>
 </head>
 <body>
 <div id="ld" role="status" aria-label="Loading ReCrafted"><svg class="lm" viewBox="0 0 120 120" aria-hidden="true"><g class="spin"><path class="ring" pathLength="1" d="M95.2 30.4A46 46 0 1 1 60 14" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round"/><path class="head" d="M54 5.5L66 14L54 22.5" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g><g class="lf" style="--d:.9s"><path d="M60 90C32 86 26 60 36 42C52 47 64 64 60 90Z" fill="#8fb07b"/><path class="st" d="M60 88C55 72 47 58 39 47" fill="none" stroke="#f7f3e8" stroke-width="1.8"/></g><g class="lf" style="--d:1.05s"><path d="M60 90C90 85 96 56 84 36C67 42 57 64 60 90Z" fill="#4f6b43"/><path class="st" d="M60 88C63 70 72 54 82 41" fill="none" stroke="#f7f3e8" stroke-width="1.8"/></g><path class="stem" d="M60 90V99" stroke="#4f6b43" stroke-width="4" stroke-linecap="round"/></svg><div class="wm" aria-hidden="true"><span class="re" style="--i:0">R</span><span class="re" style="--i:1">e</span><span class="" style="--i:2">C</span><span class="" style="--i:3">r</span><span class="" style="--i:4">a</span><span class="" style="--i:5">f</span><span class="" style="--i:6">t</span><span class="" style="--i:7">e</span><span class="" style="--i:8">d</span></div><p class="tg">Give waste a second life.</p><div class="pb"><i></i></div></div>
@@ -240,11 +242,10 @@ tick()})();
 <script>
 (function(){var h=document.documentElement,l=document.getElementById("ld");if(!l||!h.classList.contains("ld"))return;
 var b=l.querySelector(".pb i"),t0=performance.now(),min=2400,done=0;
-function set(p){b.style.setProperty("--p",p)}set(.15);
-function fin(){if(done)return;done=1;set(1);setTimeout(function(){l.classList.add("out");h.classList.remove("ld");setTimeout(function(){h.classList.remove("ldv");l.remove()},900)},Math.max(0,min-(performance.now()-t0))+250)}
+function set(p){var t="scaleX("+p+")";b.style.webkitTransform=t;b.style.transform=t}set(.15);
+function fin(){if(done)return;done=1;set(1);setTimeout(function(){l.classList.add("out");h.classList.remove("ld");setTimeout(function(){h.classList.remove("ldv");if(l.parentNode)l.parentNode.removeChild(l)},900)},Math.max(0,min-(performance.now()-t0))+250)}
 document.addEventListener("DOMContentLoaded",function(){set(.6)});
-if(document.readyState=="complete")fin();else addEventListener("load",fin)})();
-console.log("TEST")
+if(document.readyState=="complete")fin();else addEventListener("load",fin);setTimeout(fin,6000)})();
 </script>
 </body>
 </html>
