@@ -261,10 +261,18 @@ else{op=Math.max(0,1-dd*.55);tr="translate3d(0,"+dd*34+"px,"+(-dd*180)+"px) scal
 var s=e.style;s.opacity=op;s.transform=tr;s.zIndex=Math.round(100-a*10);s.pointerEvents=a<.5?"auto":"none";s.visibility="visible"});
 o.dots.forEach(function(s,i){s.className=Math.abs(i-o.pos)<.5?"on":""})}
 sc.forEach(function(o){o.its.forEach(function(e,i){e.addEventListener("focusin",function(){if(Math.abs(i-o.pos)<.5)return;scrollTo({top:o.sec.getBoundingClientRect().top+scrollY+i/(o.n-1)*(o.sec.offsetHeight-innerHeight),behavior:"auto"})})})});
-var lastY=scrollY,skipT=0;
+var lastY=scrollY,skipT=0,busy=0,touching=0,tm=0;
+var v=d.createElement("div");v.setAttribute("aria-hidden","true");v.style.cssText="position:fixed;top:0;right:0;bottom:0;left:0;z-index:75;background:#f7f3e8;opacity:0;pointer-events:none;transition:opacity .16s ease";d.body.appendChild(v);
+function skipTo(o,L){busy=1;v.style.transition="opacity .16s ease";v.style.opacity=1;setTimeout(function(){scrollTo({top:L,behavior:"instant"});o.pos=-1;lastY=scrollY;v.style.transition="opacity .35s ease";v.style.opacity=0;setTimeout(function(){busy=0},380)},180)}
+function snap(){if(touching||busy)return;var y=scrollY;sc.forEach(function(o){var T=o.sec.getBoundingClientRect().top+y,span=o.sec.offsetHeight-innerHeight;if(span<=0||y<T||y>T+span)return;var q=(y-T)/span*(o.n-1),ty=T+Math.round(q)/(o.n-1)*span;if(Math.abs(ty-y)>3)scrollTo({top:ty,behavior:"smooth"})})}
+function later(){clearTimeout(tm);tm=setTimeout(snap,140)}
+addEventListener("scroll",later,{passive:true});
+addEventListener("touchstart",function(){touching=1;clearTimeout(tm)},{passive:true});
+addEventListener("touchend",function(){touching=0;later()},{passive:true});
+addEventListener("touchcancel",function(){touching=0;later()},{passive:true});
 addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a)skipT=performance.now()+1600},true);
 function tick(){prog();var y=scrollY;
-if(y<lastY&&performance.now()>skipT){sc.forEach(function(o){var T=o.sec.getBoundingClientRect().top+y,E=T+o.sec.offsetHeight-innerHeight,L=T-innerHeight*.3;if(lastY>E+2&&y<=E&&y>L){scrollTo({top:L,behavior:"instant"});y=L;o.pos=-1}})}
+if(!busy&&y<lastY&&performance.now()>skipT){sc.forEach(function(o){var T=o.sec.getBoundingClientRect().top+y,E=T+o.sec.offsetHeight-innerHeight,L=T-innerHeight*.3;if(!busy&&lastY>E+2&&y<=E&&y>L)skipTo(o,L)})}
 lastY=y;
 sc.forEach(function(o){var r=o.sec.getBoundingClientRect();if(r.bottom<-300||r.top>innerHeight+300){o.pos=-1;return}var t=tgt(o);o.pos=(o.pos<0||rm)?t:o.pos+(t-o.pos)*.14;if(Math.abs(t-o.pos)<.002)o.pos=t;paint(o)});requestAnimationFrame(tick)}
 tick()})();
