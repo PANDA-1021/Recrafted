@@ -1,158 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ReCrafted – Give Waste a Second Life</title>
+<meta name="description" content="ReCrafted turns discarded denim, cardboard, waste papers and cylinders into handmade lamps, bags, plant holders and wall art in the Maldives.">
+<meta name="theme-color" content="#f7f3e8">
 <style>
-:root{--ivory:#f7f3e8;--linen:#ebe3d2;--sagebg:#b7c4a8;--moss:#4f6b43;--char:#1f2a24;--ink:#1f2a24;--mute:#4d5a50;--line:#d8d2bf;--nav:56px;color-scheme:light}
+:root{--ivory:#f7f3e8;--linen:#ebe3d2;--moss:#4f6b43;--char:#1f2a24;--mute:#4d5a50;--line:#d8d2bf;--nav:60px;--e:cubic-bezier(.2,.8,.2,1);color-scheme:light}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:var(--nav);background:var(--ivory)}
-body{margin:0;background:var(--ivory);color:var(--ink);font:16px/1.65 "Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:300;overflow-x:clip}
-body:after{content:"";position:fixed;top:0;right:0;bottom:0;left:0;z-index:70;pointer-events:none;opacity:.07;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-h1,h2,h3,.n,b{font-family:Georgia,"Times New Roman",serif;font-weight:400}
+body{margin:0;background:var(--ivory);color:var(--char);font:300 16px/1.65 "Helvetica Neue",Helvetica,Arial,sans-serif;overflow-x:clip}
+h1,h2,h3,.serif{font-family:Georgia,"Times New Roman",serif;font-weight:400}
 a{color:inherit}:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+html.ld,html.ld body{overflow:hidden}
 .prog{position:fixed;top:0;left:0;right:0;height:3px;z-index:80;background:var(--moss);transform:scaleX(var(--sp,0));transform-origin:left}
-header.nav{position:sticky;top:0;z-index:60;min-height:var(--nav);display:flex;align-items:center;gap:6px;padding:4px 8px 4px 18px;background:rgba(247,243,232,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.logo{flex:none;text-decoration:none;font-size:1.5rem;letter-spacing:.03em}
-.nav nav{flex:1;min-width:0;display:flex;overflow-x:auto;scrollbar-width:none;justify-content:flex-end}
-.nav nav::-webkit-scrollbar{display:none}
-.nav nav a{flex:none;color:var(--mute);text-decoration:none;font-size:.9rem;padding:13px 10px;transition:color .2s}.nav nav a:hover{color:var(--ink)}
-.band{padding:64px 0}
-.ivory{background:var(--ivory)}.linen{background:var(--linen)}
-.sage{background:linear-gradient(165deg,#c5d0b7,#a9b99a);--mute:#26332a;--line:#8fa081}
-.moss{background:linear-gradient(165deg,#4d6d42,#3b5632);color:var(--ivory);--mute:#e9e6d6;--ink:#f7f3e8;--line:#8ea481}
-.btn{display:block;text-align:center;border:1px solid var(--ink);color:var(--ink);padding:13px 26px;min-height:46px;font-size:.9rem;text-decoration:none;border-radius:3px;transition:background .25s,color .25s,transform .15s,box-shadow .25s}
-.btn.fill{background:var(--ink);color:var(--ivory);box-shadow:0 10px 20px -10px rgba(31,42,36,.6)}
-.btn:hover{background:var(--moss);border-color:var(--moss);color:#fff}.btn:active{transform:translateY(1px) scale(.99)}
-/* hero */
-.hero{background:radial-gradient(120% 80% at 70% 30%,#fffdf6,var(--ivory) 60%,var(--linen))}
-.hero .wrap{min-height:calc(100vh - var(--nav));min-height:calc(100svh - var(--nav));display:grid;align-content:center;gap:6px;padding-top:12px;padding-bottom:20px}
-h1{font-size:clamp(2.7rem,13vw,4.2rem);line-height:1.05;margin:0 0 18px;letter-spacing:-.015em}
-h1 span{display:block;overflow:hidden;padding-bottom:.1em}h1 span i{display:block;font-style:normal}
-.hero p{margin:0 0 4px;color:var(--mute);max-width:420px}.hero .btn{margin-top:20px}
-.hero svg{width:100%;height:auto;display:block;overflow:visible;filter:drop-shadow(0 30px 30px rgba(31,42,36,.12))}
-.px{transform:translateY(calc(var(--hp,0)*var(--k,0)*1px))}
-.values{background:linear-gradient(var(--linen),#e4dac5)}
-.values .wrap{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
-.values div{padding:20px 0;font-size:.9rem;color:var(--mute);line-height:1.55}.values div:last-child{grid-column:1/-1}
-.values b{display:block;font-size:1.2rem;color:var(--ink)}
-h2.t{font-size:1.8rem;text-align:center;margin:0 0 8px;line-height:1.2}
-.sub{text-align:center;color:var(--mute);max-width:560px;margin:0 auto}
-.about p{text-align:center;max-width:620px;margin:0 auto 14px}
-/* scenes: static by default, pinned with JS */
-.deck{display:grid;gap:18px;width:min(100%,380px);margin:30px auto 0}
-.pc,.fl{border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#fffdf7,var(--ivory));box-shadow:0 1px 1px rgba(31,42,36,.1),0 14px 26px -10px rgba(31,42,36,.35),0 44px 60px -34px rgba(31,42,36,.5);--mute:#4d5a50;--ink:#1f2a24;color:var(--ink)}
-.pc{display:flex;flex-direction:column}
-.pc .im{flex:1 1 40%;min-height:120px;margin:10px;border-radius:10px;background:radial-gradient(90% 80% at 50% 35%,#fbf7ec,var(--linen));display:grid;place-items:center}
-.pc .im svg{width:86%;height:100%;max-height:200px}
-.pc .bd{padding:4px 18px 18px}
-.pc h3{margin:0;font-size:1.2rem;line-height:1.25}
-.pc .m{font-size:.85rem;color:var(--mute);margin:4px 0;line-height:1.45}
-.pc p{font-size:.85rem;margin:0 0 6px;line-height:1.5;color:var(--mute)}
-.pc .pr{font-size:.9rem;color:var(--mute);margin-bottom:8px}
-.pc .btn{padding:10px 20px}
-.fl{padding:26px 24px;text-align:center;background:linear-gradient(160deg,#fffdf7,var(--linen))}
-.fl i{display:block;font:normal 5rem/1 Georgia,serif;background:linear-gradient(180deg,var(--moss),#6f8a62);-webkit-background-clip:text;background-clip:text;color:transparent}
-.fl h3{font-size:1.5rem;margin:6px 0}.fl p{margin:0;color:var(--mute);font-size:1rem}
-.dots{display:none}
-.after{text-align:center;color:var(--mute);font-style:italic;max-width:620px;margin:0 auto}
-.mv{display:grid;gap:0}.mv>div{padding:36px 4px;text-align:center}.mv>div+div{border-top:1px solid var(--line)}
-.mv h2{font-size:1.5rem;margin:0 0 10px}.mv p{margin:0;color:var(--mute)}
-.quote{text-align:center}.quote p{max-width:660px;margin:0 auto;font:400 1.5rem/1.5 Georgia,serif;color:var(--moss)}
-footer{background:linear-gradient(180deg,#26332a,var(--char));color:var(--ivory);--mute:#c4cdb9;--line:#3a4a40}
-footer .cols{display:grid;gap:30px;padding:48px 18px 36px}
-footer h3{font:400 1.2rem Georgia,serif;margin:0 0 8px}footer p{margin:0 0 6px;font-size:.9rem;color:var(--mute)}
-.bar{text-align:center;font-size:.85rem;color:var(--mute);padding:16px;border-top:1px solid var(--line)}
-.moss :focus-visible,footer :focus-visible{outline-color:var(--ivory)}
-/* pinned scenes */
-.pin .scene{padding:0;height:calc(var(--n)*70vh + 100vh);height:calc(var(--n)*70svh + 100svh)}
-.pin .stage{position:sticky;top:var(--nav);height:calc(100vh - var(--nav));height:calc(100svh - var(--nav));display:flex;flex-direction:column;padding:14px 18px 16px;overflow:hidden}
-.pin .deck{display:block;flex:1;position:relative;width:min(88vw,380px);max-height:580px;margin:12px auto 6px;perspective:1100px;perspective-origin:50% 40%}
-.pin .deck.flip{max-height:340px}
-.pin .it{position:absolute;top:0;right:0;bottom:0;left:0;transform-origin:50% 100%;will-change:transform,opacity}
-.pin .flip .it{transform-origin:50% 50%;display:grid;align-content:center}
-.pin .dots{display:flex;justify-content:center;gap:8px;height:10px;flex:none}
-.pin .dots span{width:8px;height:8px;border-radius:5px;background:#4a5e50;transition:width .35s,background .35s}
-.pin .dots span.on{width:26px;background:var(--char)}
-.stage .sub{font-size:.9rem}.stage h2.t{font-size:1.5rem;margin-bottom:2px}
-h1,h2{text-wrap:balance}p{text-wrap:pretty}::selection{background:var(--moss);color:var(--ivory)}
-.pc .im{position:relative;box-shadow:inset 0 1px 0 #fff,inset 0 -18px 30px -22px rgba(31,42,36,.25)}
-.pc .im img{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
-/* entrance + reveals */
-.js h1 span i{transform:translateY(105%);animation:up .7s cubic-bezier(.2,.7,.2,1) forwards}.js h1 span:nth-child(2) i{animation-delay:.12s}
-.js .hero .rise,.js .hero .btn{opacity:0;animation:fade .6s .35s ease forwards}
-.js .hero .g{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0);animation:grow 1s cubic-bezier(.3,1.3,.5,1) forwards;animation-delay:calc(.2s + var(--d)*.18s)}
-.js .hero .bgc{transform-box:fill-box;transform-origin:center;transform:scale(.5);opacity:0;animation:grow 1.1s ease forwards}
-.js .rv{opacity:0;transform:perspective(900px) rotateX(14deg) translateY(38px);transform-origin:50% 100%;transition:opacity .5s ease-out,transform .55s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0)*.06s)}
-.js .rv.in{opacity:1;transform:none}
-.js .wipe{opacity:0;transition:opacity .6s ease-out}.js .wipe.in{opacity:1}
-@keyframes up{to{transform:none}}@keyframes fade{to{opacity:1}}@keyframes grow{to{transform:none;opacity:1}}
-@media (min-width:821px){:root{--nav:64px}.hero .wrap{grid-template-columns:1fr 1fr;gap:30px;align-items:center}.values .wrap{grid-template-columns:repeat(5,1fr)}.values div:last-child{grid-column:auto}
-.mv{grid-template-columns:1fr 1fr}.mv>div+div{border-top:0;border-left:1px solid var(--line)}footer .cols{grid-template-columns:repeat(3,1fr)}.band{padding:90px 0}.btn,.hero .btn{display:inline-block}.pc .btn{display:block}
-header.nav{padding:10px 24px}.nav nav a{padding:10px 14px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
-.js .rv{transform:none;transition:opacity .5s ease-out;transition-delay:0s}
-.js h1 span i{transform:none;opacity:0;animation:fade .6s ease-out forwards}
-.js .hero .g,.js .hero .bgc{transform:none;animation:fade .8s ease forwards}
-.prog{display:none}}
-
-.logo{display:inline-flex;align-items:center;gap:8px}.lg{width:30px;height:30px;flex:none}.logo em{font-style:italic;color:var(--moss)}
-/* loading screen */
-html.ld,.ld body{overflow:hidden}
-.ld .hero *{animation-play-state:paused}
-#ld{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(90% 70% at 50% 40%,#fffdf6,var(--ivory) 55%,var(--linen));-webkit-clip-path:circle(150% at 50% 50%);clip-path:circle(150% at 50% 50%);opacity:1}
-.ldv #ld{display:-webkit-flex;display:flex;-webkit-animation:ldfail .4s 7s forwards;animation:ldfail .4s 7s forwards}
-#ld.out{opacity:0;-webkit-clip-path:circle(0% at 50% 50%);clip-path:circle(0% at 50% 50%);transition:clip-path .85s cubic-bezier(.7,0,.2,1),opacity .4s .5s ease-out}
+/* nav */
+header.nav{position:sticky;top:0;z-index:60;height:var(--nav);display:flex;align-items:center;padding:0 12px 0 20px;background:rgba(247,243,232,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;font:400 1.5rem Georgia,serif}.logo svg{width:30px;height:30px}.logo em{color:var(--moss)}
+nav{margin-left:auto;display:flex}
+nav a{color:var(--mute);text-decoration:none;font-size:.9rem;padding:10px 14px;position:relative}
+nav a:after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:var(--moss);transform:scaleX(0);transition:transform .35s var(--e)}
+nav a:hover:after,nav a.on:after{transform:scaleX(1)}nav a.on{color:var(--char)}
+.mb{display:none;margin-left:auto;width:44px;height:44px;border:0;background:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.mb span{width:22px;height:2px;background:var(--char);transition:transform .3s var(--e),opacity .2s}
+.nav.open .mb span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav.open .mb span:nth-child(2){opacity:0}.nav.open .mb span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:820px){.mb{display:flex}nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;padding:4px 20px 12px;background:rgba(247,243,232,.98);border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-8px);transition:.3s var(--e)}.nav.open nav{opacity:1;visibility:visible;transform:none}nav a{font-size:1.1rem;padding:15px 0;border-bottom:1px solid var(--line)}nav a:after{display:none}}
+/* intro */
+#ld{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;cursor:pointer;background:radial-gradient(90% 70% at 50% 40%,#fffdf6,var(--ivory) 55%,var(--linen));clip-path:circle(150% at 50% 50%);-webkit-tap-highlight-color:transparent;user-select:none}
+#ld.out{opacity:0;clip-path:circle(0% at 50% 50%);transition:clip-path .85s cubic-bezier(.7,0,.2,1),opacity .4s .5s ease-out}
 #ld.out>*{opacity:0;transition:opacity .3s}
-.lm{width:130px;width:min(38vw,150px);height:auto;overflow:visible}
-.lm .ring{opacity:0;stroke-dasharray:1 2;stroke-dashoffset:1;animation:rdraw 1.3s .2s cubic-bezier(.6,0,.2,1) forwards}
-.lm .head{transform-origin:60px 14px;transform:scale(0);animation:pop .4s 1.35s cubic-bezier(.3,1.6,.5,1) forwards}
-.lm .spin{transform-origin:60px 60px;animation:spin 7s linear 1.8s infinite}
-.lm .lf{transform-origin:60px 90px;transform:scale(0) rotate(-12deg);animation:leaf .8s cubic-bezier(.3,1.4,.5,1) var(--d) forwards,sway 3s ease-in-out calc(var(--d) + .9s) infinite alternate}
-.lm .st{stroke-dasharray:3 3.2;opacity:0;animation:fade .5s 1.7s forwards}
-.lm .stem{opacity:0;animation:fade .3s .8s forwards}
-.wm{display:flex;margin-top:22px;font:400 2.2rem/1 Georgia,"Times New Roman",serif;font:400 clamp(2rem,9vw,2.8rem)/1 Georgia,"Times New Roman",serif;letter-spacing:.02em}
-.wm span{display:inline-block;opacity:0;transform:translateY(14px);animation:wl .6s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(1.3s + var(--i)*.07s)}
-.wm .re{font-style:italic;color:var(--moss)}
-.tg{margin:10px 0 0;color:var(--mute);font-size:.9rem;opacity:0;animation:fade .6s 2s forwards}
-.pb{width:160px;width:min(52vw,200px);height:2px;margin-top:26px;background:var(--line);border-radius:2px;overflow:hidden}
-.pb i{display:block;height:100%;background:#4f6b43;background:var(--moss);-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-transform-origin:left;transform-origin:left;-webkit-transition:-webkit-transform .5s ease-out;transition:transform .5s ease-out}
-.wm span:nth-child(1){animation-delay:1.3s}.wm span:nth-child(2){animation-delay:1.37s}.wm span:nth-child(3){animation-delay:1.44s}.wm span:nth-child(4){animation-delay:1.51s}.wm span:nth-child(5){animation-delay:1.58s}.wm span:nth-child(6){animation-delay:1.65s}.wm span:nth-child(7){animation-delay:1.72s}.wm span:nth-child(8){animation-delay:1.79s}.wm span:nth-child(9){animation-delay:1.86s}
-.lm g.lf:nth-of-type(2){animation:leaf .8s cubic-bezier(.3,1.4,.5,1) .9s forwards,sway 3s ease-in-out 1.8s infinite alternate}.lm g.lf:nth-of-type(3){animation:leaf .8s cubic-bezier(.3,1.4,.5,1) 1.05s forwards,sway 3s ease-in-out 1.95s infinite alternate}
-@keyframes rdraw{to{stroke-dashoffset:0;opacity:1}}@keyframes pop{to{transform:none}}@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes leaf{to{transform:none}}@keyframes sway{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
-@keyframes wl{to{opacity:1;transform:none}}@keyframes ldfail{to{opacity:0;visibility:hidden}}
-
-/* mobile menu */
-.mb{display:none;flex:none;width:44px;height:44px;margin-left:auto;padding:0;border:0;background:none;color:var(--ink);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;-webkit-tap-highlight-color:transparent}
-.mb span{display:block;width:22px;height:2px;border-radius:2px;background:var(--ink);transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .2s}
-.nav.open .mb span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav.open .mb span:nth-child(2){opacity:0}
-.nav.open .mb span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media (max-width:820px){
-.mb{display:flex}
-.nav nav{position:absolute;top:100%;left:0;right:0;flex:none;flex-direction:column;justify-content:flex-start;overflow:visible;padding:4px 18px 12px;background:rgba(247,243,232,.98);border-bottom:1px solid var(--line);box-shadow:0 22px 30px -20px rgba(31,42,36,.45);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.7,.2,1),visibility 0s .3s}
-.nav.open nav{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
-.nav nav a{font-size:1.1rem;padding:15px 4px;color:var(--ink);border-bottom:1px solid var(--line)}
-.nav nav a:last-child{border-bottom:0}
-}
-.pin .scene.col{height:100vh;height:100svh}
-/* scroll hint: phone */
-.hd{display:flex;align-items:center;justify-content:center;gap:12px}.hd>div{min-width:0}
-.hint{flex:none;width:44px;height:auto;overflow:hidden;opacity:.9;filter:drop-shadow(0 4px 5px rgba(31,42,36,.22));transition:opacity .4s ease,width .45s ease,margin .45s ease}
-.hint.gone{opacity:0;width:0;margin-left:-12px}
-.hs{animation:hdscroll 1.8s cubic-bezier(.5,0,.2,1) infinite}.ha{animation:hdarrow 1.8s ease-in-out infinite}
-@keyframes hdscroll{0%,6%{transform:translateY(0)}72%,100%{transform:translateY(-48px)}}
-@keyframes hdarrow{0%,6%{opacity:0;transform:translateY(8px)}30%{opacity:.85}72%,100%{opacity:0;transform:translateY(-8px)}}
-@media (prefers-reduced-motion:reduce){.hs,.ha{animation:none}}
+.gt{display:flex;flex-direction:column;align-items:center}
+.gt>svg{width:min(42vw,170px);height:auto;overflow:visible;filter:drop-shadow(0 18px 24px rgba(79,107,67,.22));opacity:0;animation:fade .9s .2s ease forwards}
+.stk{display:grid;justify-items:center;align-items:start;margin-top:34px}.stk>*{grid-area:1/1}
+.sp{transform-origin:60px 60px}.gr{stroke-dasharray:1 2}.gh{transform-origin:60px 14px}.gl{transform-origin:60px 90px}
+.tap{font-size:.85rem;letter-spacing:.14em;color:var(--char);opacity:0;animation:breathe 3.2s ease-in-out 1.2s infinite}
+@keyframes breathe{0%,100%{opacity:.1}50%{opacity:.36}}
+@keyframes tapout{from{opacity:.3;transform:none}to{opacity:0;transform:translateY(8px) scale(.9)}}
+.p1 .tap{animation:tapout .5s ease-in forwards}
+.tx{display:none;flex-direction:column;align-items:center}.p2 .tx{display:flex}
+.wm{display:flex;font:400 clamp(2.2rem,10vw,3rem)/1 Georgia,serif;letter-spacing:.02em}
+.wm span{display:inline-block;opacity:0;transform:translateY(14px);animation:wl .6s var(--e) forwards;animation-delay:calc(.05s + var(--i)*.07s)}.wm .re{font-style:italic;color:var(--moss)}
+.tg{margin:10px 0 0;color:var(--mute);font-size:.95rem;opacity:0;animation:fade .6s .7s forwards}
+.pb{width:min(52vw,200px);height:2px;margin-top:26px;background:var(--line);border-radius:2px;overflow:hidden}
+.pb i{display:block;height:100%;background:var(--moss);transform:scaleX(0);transform-origin:left;transition:transform .5s ease-out}
+@keyframes unr{from{stroke-dashoffset:0;opacity:1}to{stroke-dashoffset:1;opacity:1}}
+@keyframes tuck{from{transform:none}to{transform:scale(0)}}
+@keyframes rdraw{from{stroke-dashoffset:1;opacity:1}to{stroke-dashoffset:0;opacity:1}}
+@keyframes popin{from{transform:scale(0)}to{transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes fade{to{opacity:1}}@keyframes wl{to{opacity:1;transform:none}}
+.p1 .gr{animation:unr .7s .25s cubic-bezier(.5,0,.7,.4) both}
+.p1 .gh{animation:tuck .25s ease-in both}
+.p3 .gr{animation:rdraw 1.1s cubic-bezier(.6,0,.2,1) both}
+.p3 .gh{animation:popin .4s 1s cubic-bezier(.3,1.6,.5,1) both}
+.p4 .sp{animation:spin 7s linear infinite}
+/* hero */
+.hero{background:radial-gradient(120% 80% at 70% 30%,#fffdf6,var(--ivory) 60%,var(--linen));overflow:hidden}
+.hero .wrap{min-height:calc(100svh - var(--nav));display:grid;align-content:center;gap:10px;padding-top:16px;padding-bottom:24px}
+h1{font-size:clamp(2.7rem,13vw,4.4rem);line-height:1.05;margin:0 0 18px;letter-spacing:-.015em}
+h1 span{display:block;overflow:hidden;padding-bottom:.1em}h1 i{display:block;font-style:normal}
+.hero p{color:var(--mute);max-width:420px;margin:0}
+.btn{display:inline-block;margin-top:22px;padding:13px 28px;border-radius:999px;background:var(--char);color:var(--ivory);text-decoration:none;font-size:.92rem;position:relative;overflow:hidden;transition:transform .2s,background .3s}
+.btn:hover{background:var(--moss);transform:translateY(-2px)}.btn:active{transform:scale(.97)}
+.btn.o{background:none;color:var(--char);border:1px solid var(--char);margin-top:6px;padding:10px 20px}.btn.o:hover{background:var(--moss);color:#fff;border-color:var(--moss)}
+.scene svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 30px 30px rgba(31,42,36,.12))}
+.bob{animation:bob 6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}.b2{animation-delay:-2s}.b3{animation-delay:-4s}
+@keyframes bob{50%{transform:translateY(-9px) rotate(.8deg)}}
+.px{transition:transform .25s ease-out;transform:translate(calc(var(--mx,0)*var(--k)*1px),calc(var(--my,0)*var(--k)*1px) )}
+.js .reveal i{transform:translateY(105%)}.go .reveal i{animation:up .9s var(--e) forwards}.go .reveal:nth-child(2) i{animation-delay:.12s}
+.js .pop{opacity:0;transform:translateY(20px)}.go .pop{animation:upf .8s .4s var(--e) forwards}
+.js .art .g{transform:scale(0);transform-box:fill-box;transform-origin:50% 100%}.go .art .g{animation:grow 1.1s cubic-bezier(.3,1.3,.5,1) forwards;animation-delay:calc(.25s + var(--d)*.18s)}
+@keyframes up{to{transform:none}}@keyframes upf{to{opacity:1;transform:none}}@keyframes grow{to{transform:none}}
+.values{background:linear-gradient(var(--linen),#e4dac5)}.values .wrap{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.values div{padding:20px 0;font-size:.9rem;color:var(--mute)}.values div:last-child{grid-column:1/-1}.values b{display:block;font:400 1.2rem Georgia,serif;color:var(--char)}
+.band{padding:72px 0}h2.t{font-size:1.9rem;text-align:center;margin:0 0 8px;line-height:1.2;text-wrap:balance}.sub{text-align:center;color:var(--mute);max-width:560px;margin:0 auto 8px}
+.about p{text-align:center;max-width:620px;margin:0 auto 14px}
+.sage{background:linear-gradient(165deg,#c5d0b7,#a9b99a)}.linen{background:var(--linen)}
+/* products */
+.grid{display:grid;gap:22px;margin-top:36px;perspective:1200px}
+.pc{border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#fffdf7,var(--ivory));box-shadow:0 1px 1px rgba(31,42,36,.1),0 18px 30px -12px rgba(31,42,36,.38);display:flex;flex-direction:column;transform:rotateX(var(--rx,0)) rotateY(var(--ry,0));transition:transform .25s ease-out,box-shadow .3s;position:relative}
+.pc:hover{box-shadow:0 1px 1px rgba(31,42,36,.1),0 30px 44px -14px rgba(31,42,36,.5)}
+.pc:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(260px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.55),transparent 60%);opacity:0;transition:opacity .3s}.pc:hover:before{opacity:1}
+.im{position:relative;height:190px;margin:10px;border-radius:16px;background:radial-gradient(90% 80% at 50% 35%,#fbf7ec,var(--linen));display:grid;place-items:center;overflow:hidden}
+.im svg{width:80%;height:100%;transition:transform .6s var(--e)}.pc:hover .im svg{transform:scale(1.07) translateY(-4px)}
+.im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bd{padding:4px 20px 20px}.pc h3{margin:0;font-size:1.25rem}.m{font-size:.85rem;color:var(--mute);margin:4px 0}.pc p{font-size:.88rem;margin:0 0 6px;color:var(--mute)}.pr{font-size:.9rem;color:var(--mute);margin-bottom:8px}
+/* process */
+.steps{max-width:640px;margin:44px auto 0;padding-left:68px}
+.st{position:relative;padding:0 0 44px;min-height:48px}
+.st i{position:absolute;left:-68px;top:0;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--ivory);border:2px solid var(--line);color:var(--mute);font:normal 600 1.05rem/1 "Helvetica Neue",Arial,sans-serif;font-variant-numeric:lining-nums;z-index:1;transition:background .5s,color .5s,border-color .5s,transform .5s var(--e),box-shadow .5s}
+.st:not(:last-child):before,.st:not(:last-child):after{content:"";position:absolute;left:-45px;top:48px;bottom:0;width:2px;background:var(--line)}
+.st:not(:last-child):after{background:var(--moss);transform:scaleY(0);transform-origin:top;transition:transform .6s var(--e)}
+.st.done:not(:last-child):after{transform:scaleY(1)}
+.st.on i,.st.done i{background:var(--moss);color:var(--ivory);border-color:var(--moss)}
+.st.on i{transform:scale(1.08);box-shadow:0 0 0 6px rgba(79,107,67,.15)}
+.st h3,.st p{opacity:.4;transition:opacity .5s}.st.on h3,.st.on p,.st.done h3,.st.done p{opacity:1}
+.st h3{margin:0 0 2px;font-size:1.4rem}.st p{margin:0;color:var(--mute)}
+.after{text-align:center;color:var(--mute);font-style:italic;max-width:620px;margin:0 auto}
+.moss{background:linear-gradient(165deg,#4d6d42,#3b5632);color:var(--ivory)}.mv{display:grid}.mv>div{padding:36px 4px;text-align:center}.mv>div+div{border-top:1px solid #8ea481}
+.mv h2{font-size:1.6rem;margin:0 0 10px}.mv p{margin:0;color:#e9e6d6}
+.quote p{text-align:center;max-width:660px;margin:0 auto;font:1.5rem/1.5 Georgia,serif;color:var(--moss)}
+footer{background:linear-gradient(180deg,#26332a,var(--char));color:var(--ivory)}footer .cols{display:grid;gap:30px;padding:48px 20px 36px}
+footer h3{font-size:1.2rem;margin:0 0 8px}footer p{margin:0 0 6px;font-size:.9rem;color:#c4cdb9}.bar{text-align:center;font-size:.85rem;color:#c4cdb9;padding:16px;border-top:1px solid #3a4a40}
+.soc{display:flex;align-items:center;gap:12px;margin:0 0 10px;font-size:.9rem;color:#c4cdb9;text-decoration:none;transition:color .25s,transform .25s var(--e)}
+.soc svg{width:38px;height:38px;flex:none;padding:9px;border-radius:50%;border:1px solid #4b5d52;color:var(--ivory);transition:background .25s,border-color .25s}
+.soc:hover{color:#fff;transform:translateX(3px)}.soc:hover svg{background:var(--moss);border-color:var(--moss)}
+.soc:focus-visible{outline-color:var(--ivory)}
+.by{margin-left:12px;font-size:.62rem;letter-spacing:.04em;opacity:.09;transition:opacity .4s}.by:hover{opacity:.4}
+/* scroll reveals */
+.js .rv{opacity:0;transform:perspective(900px) rotateX(12deg) translateY(36px);transform-origin:50% 100%;transition:opacity .6s,transform .7s var(--e);transition-delay:calc(var(--i,0)*.08s)}.js .rv.in{opacity:1;transform:none}
+@media(min-width:821px){.hero .wrap{grid-template-columns:1fr 1fr;gap:30px}.values .wrap{grid-template-columns:repeat(5,1fr)}.values div:last-child{grid-column:auto}.grid{grid-template-columns:repeat(3,1fr)}.mv{grid-template-columns:1fr 1fr}.mv>div+div{border-top:0;border-left:1px solid #8ea481}footer .cols{grid-template-columns:repeat(3,1fr)}.band{padding:100px 0}}
+@media(min-width:821px) and (max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01s!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01s!important}.tap{opacity:.3}}
 </style>
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20120%20120%27%3E%3Crect%20width%3D%27120%27%20height%3D%27120%27%20rx%3D%2726%27%20fill%3D%27%23f7f3e8%27/%3E%3Cpath%20d%3D%27M95.2%2030.4A46%2046%200%201%201%2060%2014%27%20fill%3D%27none%27%20stroke%3D%27%231f2a24%27%20stroke-width%3D%279%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M60%2090C32%2086%2026%2060%2036%2042C52%2047%2064%2064%2060%2090Z%27%20fill%3D%27%238fb07b%27/%3E%3Cpath%20d%3D%27M60%2090C90%2085%2096%2056%2084%2036C67%2042%2057%2064%2060%2090Z%27%20fill%3D%27%234f6b43%27/%3E%3C/svg%3E">
-<script>(function(){var h=document.documentElement;if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;h.classList.add("ld");h.classList.add("ldv");setTimeout(function(){h.classList.remove("ld","ldv")},8000)})()</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='26' fill='%23f7f3e8'/%3E%3Cpath d='M60 90C32 86 26 60 36 42C52 47 64 64 60 90Z' fill='%238fb07b'/%3E%3Cpath d='M60 90C90 85 96 56 84 36C67 42 57 64 60 90Z' fill='%234f6b43'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add("js","ld")</script>
 </head>
 <body>
-<div id="ld" role="status" aria-label="Loading ReCrafted"><svg class="lm" viewBox="0 0 120 120" aria-hidden="true"><g class="spin"><path class="ring" pathLength="1" d="M95.2 30.4A46 46 0 1 1 60 14" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round"/><path class="head" d="M54 5.5L66 14L54 22.5" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g><g class="lf" style="--d:.9s"><path d="M60 90C32 86 26 60 36 42C52 47 64 64 60 90Z" fill="#8fb07b"/><path class="st" d="M60 88C55 72 47 58 39 47" fill="none" stroke="#f7f3e8" stroke-width="1.8"/></g><g class="lf" style="--d:1.05s"><path d="M60 90C90 85 96 56 84 36C67 42 57 64 60 90Z" fill="#4f6b43"/><path class="st" d="M60 88C63 70 72 54 82 41" fill="none" stroke="#f7f3e8" stroke-width="1.8"/></g><path class="stem" d="M60 90V99" stroke="#4f6b43" stroke-width="4" stroke-linecap="round"/></svg><div class="wm" aria-hidden="true"><span class="re" style="--i:0">R</span><span class="re" style="--i:1">e</span><span class="" style="--i:2">C</span><span class="" style="--i:3">r</span><span class="" style="--i:4">a</span><span class="" style="--i:5">f</span><span class="" style="--i:6">t</span><span class="" style="--i:7">e</span><span class="" style="--i:8">d</span></div><p class="tg">Give waste a second life.</p><div class="pb"><i></i></div></div>
+<div id="ld" role="dialog" aria-modal="true" aria-label="Welcome to ReCrafted. Tap anywhere to enter." tabindex="0"><div class="gt"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="sp"><path class="gr" pathLength="1" d="M95.2 30.4A46 46 0 1 1 60 14" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round"/><path class="gh" d="M54 5.5L66 14L54 22.5" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g><path class="gl" d="M60 90C32 86 26 60 36 42C52 47 64 64 60 90Z" fill="#8fb07b"/><path class="gl" d="M60 90C90 85 96 56 84 36C67 42 57 64 60 90Z" fill="#4f6b43"/><path d="M60 90V99" stroke="#4f6b43" stroke-width="4" stroke-linecap="round"/></svg>
+<div class="stk"><span class="tap" aria-hidden="true">Tap anywhere</span><div class="tx"><div class="wm" aria-hidden="true"><span class="re" style="--i:0">R</span><span class="re" style="--i:1">e</span><span style="--i:2">C</span><span style="--i:3">r</span><span style="--i:4">a</span><span style="--i:5">f</span><span style="--i:6">t</span><span style="--i:7">e</span><span style="--i:8">d</span></div><p class="tg">Give waste a second life.</p><div class="pb" aria-hidden="true"><i></i></div></div></div></div></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <filter id="bl" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="4"/></filter>
 <linearGradient id="gCream"><stop offset="0" stop-color="#d8c78f"/><stop offset=".35" stop-color="#fbf3d6"/><stop offset=".7" stop-color="#efe2b4"/><stop offset="1" stop-color="#c9b778"/></linearGradient>
@@ -162,156 +127,96 @@ html.ld,.ld body{overflow:hidden}
 <radialGradient id="gPink" cx=".35" cy=".35"><stop offset="0" stop-color="#ffd2dc"/><stop offset="1" stop-color="#e59aac"/></radialGradient>
 <radialGradient id="gGold" cx=".35" cy=".35"><stop offset="0" stop-color="#fff0a8"/><stop offset="1" stop-color="#e2b84a"/></radialGradient>
 <radialGradient id="gGlow"><stop offset="0" stop-color="#ffe6a0" stop-opacity=".85"/><stop offset="1" stop-color="#ffe6a0" stop-opacity="0"/></radialGradient>
-<radialGradient id="gHi" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-<symbol id="p1" viewBox="0 0 200 160"><ellipse cx="100" cy="142" rx="44" ry="6" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><circle cx="100" cy="62" r="58" fill="url(#gGlow)"/><rect x="76" y="70" width="48" height="70" rx="8" fill="url(#gCream)"/><ellipse cx="100" cy="70" rx="24" ry="5" fill="#f3e8c0"/><rect x="82" y="76" width="6" height="58" rx="3" fill="#fff" opacity=".35"/><circle cx="82" cy="54" r="13" fill="url(#gPink)"/><circle cx="118" cy="54" r="13" fill="url(#gPink)"/><circle cx="100" cy="40" r="15" fill="url(#gGold)"/><circle cx="100" cy="40" r="5" fill="#c9962e"/></symbol>
-<symbol id="p2" viewBox="0 0 200 160"><ellipse cx="100" cy="142" rx="84" ry="7" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><path d="M42 92c-14-14-12-30 0-40 12 10 14 26 0 40zM100 68c-16-18-14-38 0-52 14 14 16 34 0 52zM158 102c-12-10-10-24 0-32 10 8 12 22 0 32z" fill="url(#gLeaf)"/><rect x="20" y="90" width="44" height="50" rx="6" fill="url(#gTerra)"/><rect x="78" y="66" width="44" height="74" rx="6" fill="url(#gSky)"/><rect x="136" y="100" width="44" height="40" rx="6" fill="url(#gCream)"/><g fill="#1f2a24" opacity=".35"><ellipse cx="42" cy="91" rx="22" ry="4"/><ellipse cx="100" cy="67" rx="22" ry="4"/><ellipse cx="158" cy="101" rx="22" ry="4"/></g></symbol>
-<symbol id="p3" viewBox="0 0 200 160"><ellipse cx="100" cy="144" rx="64" ry="6" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><path d="M72 56c0-34 56-34 56 0" fill="none" stroke="#506b85" stroke-width="7"/><path d="M48 56h104l8 84H40z" fill="url(#gSky)"/><path d="M50 76h100" stroke="#e8eef3" stroke-width="2" stroke-dasharray="4 3" opacity=".7"/><rect x="78" y="94" width="44" height="34" rx="3" fill="#6d889f" stroke="#e8eef3" stroke-width="1.5" stroke-dasharray="4 3"/><rect x="56" y="60" width="10" height="76" fill="#fff" opacity=".12"/></symbol>
-<symbol id="p4" viewBox="0 0 200 160"><rect x="34" y="22" width="140" height="120" rx="3" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><rect x="30" y="14" width="140" height="120" rx="3" fill="#ddd3b8" stroke="#b9ab86" stroke-width="3"/><g><circle cx="62" cy="42" r="17" fill="#e59aac"/><circle cx="100" cy="42" r="17" fill="#e2b84a"/><circle cx="138" cy="42" r="17" fill="#7fa56c"/><circle cx="62" cy="76" r="17" fill="#7391ab"/><circle cx="100" cy="76" r="17" fill="#c27850"/><circle cx="138" cy="76" r="17" fill="#e59aac"/><circle cx="81" cy="110" r="14" fill="#7fa56c"/><circle cx="119" cy="110" r="14" fill="#e2b84a"/></g><g fill="url(#gHi)"><circle cx="62" cy="42" r="17"/><circle cx="100" cy="42" r="17"/><circle cx="138" cy="42" r="17"/><circle cx="62" cy="76" r="17"/><circle cx="100" cy="76" r="17"/><circle cx="138" cy="76" r="17"/><circle cx="81" cy="110" r="14"/><circle cx="119" cy="110" r="14"/></g></symbol>
-<symbol id="p5" viewBox="0 0 200 160"><ellipse cx="100" cy="140" rx="82" ry="6" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><g transform="rotate(-9 100 90)"><rect x="56" y="36" width="10" height="54" fill="#e3a07a"/><path d="M56 36l5-13 5 13z" fill="#f1d9b5"/></g><g transform="rotate(4 100 90)"><rect x="92" y="30" width="10" height="60" fill="#7fa56c"/><path d="M92 30l5-13 5 13z" fill="#f1d9b5"/></g><g transform="rotate(14 100 90)"><rect x="128" y="38" width="10" height="52" fill="#e2b84a"/><path d="M128 38l5-13 5 13z" fill="#f1d9b5"/></g><rect x="24" y="80" width="152" height="58" rx="22" fill="url(#gSky)"/><rect x="36" y="86" width="128" height="10" rx="5" fill="#fff" opacity=".2"/><path d="M40 106h112" stroke="#e8eef3" stroke-width="2.5" stroke-dasharray="3 3"/><rect x="148" y="98" width="14" height="16" rx="3" fill="#c9b778"/></symbol>
-<symbol id="mark" viewBox="0 0 120 120"><path d="M95.2 30.4A46 46 0 1 1 60 14" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round"/><path d="M54 5.5L66 14L54 22.5" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 90C32 86 26 60 36 42C52 47 64 64 60 90Z" fill="#8fb07b"/><path d="M60 90C90 85 96 56 84 36C67 42 57 64 60 90Z" fill="#4f6b43"/><path d="M60 90V99" stroke="#4f6b43" stroke-width="4" stroke-linecap="round"/><g fill="none" stroke="#f7f3e8" stroke-width="1.8" stroke-dasharray="3 3.2"><path d="M60 88C55 72 47 58 39 47"/><path d="M60 88C63 70 72 54 82 41"/></g></symbol></defs></svg>
+<symbol id="p1" viewBox="0 0 200 160"><ellipse cx="100" cy="142" rx="44" ry="6" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><circle cx="100" cy="62" r="58" fill="url(#gGlow)"/><rect x="76" y="70" width="48" height="70" rx="8" fill="url(#gCream)"/><ellipse cx="100" cy="70" rx="24" ry="5" fill="#f3e8c0"/><circle cx="82" cy="54" r="13" fill="url(#gPink)"/><circle cx="118" cy="54" r="13" fill="url(#gPink)"/><circle cx="100" cy="40" r="15" fill="url(#gGold)"/><circle cx="100" cy="40" r="5" fill="#c9962e"/></symbol>
+<symbol id="p2" viewBox="0 0 200 160"><ellipse cx="100" cy="142" rx="84" ry="7" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><path d="M42 92c-14-14-12-30 0-40 12 10 14 26 0 40zM100 68c-16-18-14-38 0-52 14 14 16 34 0 52zM158 102c-12-10-10-24 0-32 10 8 12 22 0 32z" fill="url(#gLeaf)"/><rect x="20" y="90" width="44" height="50" rx="6" fill="url(#gTerra)"/><rect x="78" y="66" width="44" height="74" rx="6" fill="url(#gSky)"/><rect x="136" y="100" width="44" height="40" rx="6" fill="url(#gCream)"/></symbol>
+<symbol id="p3" viewBox="0 0 200 160"><ellipse cx="100" cy="144" rx="64" ry="6" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><path d="M72 56c0-34 56-34 56 0" fill="none" stroke="#506b85" stroke-width="7"/><path d="M48 56h104l8 84H40z" fill="url(#gSky)"/><path d="M50 76h100" stroke="#e8eef3" stroke-width="2" stroke-dasharray="4 3" opacity=".7"/><rect x="78" y="94" width="44" height="34" rx="3" fill="#6d889f" stroke="#e8eef3" stroke-width="1.5" stroke-dasharray="4 3"/></symbol>
+<symbol id="p4" viewBox="0 0 200 160"><rect x="30" y="14" width="140" height="120" rx="3" fill="#ddd3b8" stroke="#b9ab86" stroke-width="3"/><circle cx="62" cy="42" r="17" fill="#e59aac"/><circle cx="100" cy="42" r="17" fill="#e2b84a"/><circle cx="138" cy="42" r="17" fill="#7fa56c"/><circle cx="62" cy="76" r="17" fill="#7391ab"/><circle cx="100" cy="76" r="17" fill="#c27850"/><circle cx="138" cy="76" r="17" fill="#e59aac"/><circle cx="81" cy="110" r="14" fill="#7fa56c"/><circle cx="119" cy="110" r="14" fill="#e2b84a"/></symbol>
+<symbol id="p5" viewBox="0 0 200 160"><ellipse cx="100" cy="140" rx="82" ry="6" fill="#1f2a24" opacity=".3" filter="url(#bl)"/><g transform="rotate(-9 100 90)"><rect x="56" y="36" width="10" height="54" fill="#e3a07a"/><path d="M56 36l5-13 5 13z" fill="#f1d9b5"/></g><g transform="rotate(4 100 90)"><rect x="92" y="30" width="10" height="60" fill="#7fa56c"/><path d="M92 30l5-13 5 13z" fill="#f1d9b5"/></g><g transform="rotate(14 100 90)"><rect x="128" y="38" width="10" height="52" fill="#e2b84a"/><path d="M128 38l5-13 5 13z" fill="#f1d9b5"/></g><rect x="24" y="80" width="152" height="58" rx="22" fill="url(#gSky)"/><path d="M40 106h112" stroke="#e8eef3" stroke-width="2.5" stroke-dasharray="3 3"/></symbol>
+<symbol id="mark" viewBox="0 0 120 120"><path d="M95.2 30.4A46 46 0 1 1 60 14" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round"/><path d="M54 5.5L66 14L54 22.5" fill="none" stroke="#1f2a24" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 90C32 86 26 60 36 42C52 47 64 64 60 90Z" fill="#8fb07b"/><path d="M60 90C90 85 96 56 84 36C67 42 57 64 60 90Z" fill="#4f6b43"/></symbol></defs></svg>
 <div class="prog" id="prog"></div>
-<header class="nav"><a class="logo n" href="#home" aria-label="ReCrafted home"><svg class="lg" viewBox="0 0 120 120" aria-hidden="true"><use href="#mark"/></svg><span><em>Re</em>Crafted</span></a><nav aria-label="Primary" id="menu"><a href="#about">About</a><a href="#products">Products</a><a href="#process">Process</a><a href="#mission">Mission</a><a href="#contact">Contact</a></nav><button class="mb" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button></header>
-
+<header class="nav"><a class="logo" href="#home" aria-label="ReCrafted home"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#mark"/></svg><span><em>Re</em>Crafted</span></a><nav id="menu" aria-label="Primary"><a href="#about">About</a><a href="#products">Products</a><a href="#process">Process</a><a href="#mission">Mission</a><a href="#contact">Contact</a></nav><button class="mb" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button></header>
 <main>
-<div class="hero" id="home"><div class="wrap">
-<div>
-<h1><span><i>Give waste</i></span><span><i>a second life.</i></span></h1>
-<p class="rise">Handmade lamps, bags, plant holders and wall art, made from discarded denim, cardboard, waste papers and cylinders in the Maldives.</p>
-<a class="btn fill" href="#products">See the collection</a>
-</div>
-<svg viewBox="0 0 520 420" aria-hidden="true">
-<circle class="bgc" cx="270" cy="210" r="190" fill="#dfe5d2"/>
-<path d="M30 372h460" stroke="#cfc8b2" stroke-width="2"/>
-<g class="px" style="--k:.12"><g class="g" style="--d:0"><use href="#p1" x="0" y="150" width="200" height="160"/></g></g>
-<g class="px" style="--k:.4"><g class="g" style="--d:2"><use href="#p3" x="320" y="140" width="200" height="160"/></g></g>
-<g class="px" style="--k:.25"><g class="g" style="--d:1"><use href="#p2" x="110" y="130" width="300" height="240"/></g></g>
-</svg>
+<div class="hero scene" id="home"><div class="wrap">
+<div><h1><span class="reveal"><i>Give waste</i></span><span class="reveal"><i>a second life.</i></span></h1>
+<p class="pop">Handmade lamps, bags, plant holders and wall art, made from discarded denim, cardboard, waste papers and cylinders in the Maldives.</p>
+<a class="btn pop" href="#products">See the collection</a></div>
+<svg class="art" viewBox="0 0 520 420" aria-hidden="true"><circle cx="270" cy="210" r="190" fill="#dfe5d2"/><path d="M30 372h460" stroke="#cfc8b2" stroke-width="2"/>
+<g class="px" style="--k:.5"><g class="g" style="--d:0"><g class="bob"><use href="#p1" x="0" y="150" width="200" height="160"/></g></g></g>
+<g class="px" style="--k:1.2"><g class="g" style="--d:2"><g class="bob b3"><use href="#p3" x="320" y="140" width="200" height="160"/></g></g></g>
+<g class="px" style="--k:.8"><g class="g" style="--d:1"><g class="bob b2"><use href="#p2" x="110" y="130" width="300" height="240"/></g></g></g></svg>
 </div></div>
-
 <div class="values"><div class="wrap">
-<div><b>Sustainable</b>We give discarded materials a new purpose.</div>
-<div><b>Creative</b>Our products feature unique and attractive designs.</div>
-<div><b>Affordable</b>We aim to create accessible products at reasonable prices.</div>
-<div><b>Practical</b>Designed for everyday use and decoration.</div>
-<div><b>Handmade</b>Each product is carefully created using reused materials.</div>
+<div class="rv"><b>Sustainable</b>We give discarded materials a new purpose.</div>
+<div class="rv"><b>Creative</b>Our products feature unique and attractive designs.</div>
+<div class="rv"><b>Affordable</b>We aim to create accessible products at reasonable prices.</div>
+<div class="rv"><b>Practical</b>Designed for everyday use and decoration.</div>
+<div class="rv"><b>Handmade</b>Each product is carefully created using reused materials.</div>
 </div></div>
-
-<section id="about" class="about band ivory"><div class="wrap">
-<h2 class="t">Who we are</h2>
-<p>ReCrafted is a sustainable product brand that focuses on transforming waste materials into useful and attractive products.</p>
-<p>We started this business to show that discarded materials still have value and can be turned into something meaningful through creativity and innovation.</p>
-<p>Our products combine functionality, affordability and aesthetic designs while promoting the importance of reducing waste.</p>
-</div></section>
-
-<section id="products" class="band sage scene"><div class="stage">
-<div class="hd"><div><h2 class="t">Our products</h2><p class="sub">Handmade from reused and recycled materials.</p></div>
-<svg class="hint" viewBox="8 0 76 100" aria-hidden="true"><defs><clipPath id="hdclip"><rect x="14" y="8" width="44" height="84" rx="6"/></clipPath><g id="hcard"><rect x="18" width="36" height="42" rx="5" fill="#fffdf7" stroke="#d8d2bf"/><rect x="21" y="3" width="30" height="22" rx="3" fill="#cfdcc0"/><circle cx="36" cy="14" r="5" fill="#8fb07b"/><rect x="21" y="29" width="22" height="3" rx="1.5" fill="#4d5a50" opacity=".5"/><rect x="21" y="35" width="14" height="3" rx="1.5" fill="#4d5a50" opacity=".3"/></g></defs>
-<rect x="10" y="2" width="52" height="96" rx="10" fill="#1f2a24"/><rect x="14" y="8" width="44" height="84" rx="6" fill="#f7f3e8"/><rect x="29" y="3.6" width="14" height="2.4" rx="1.2" fill="#4a5e50"/>
-<g clip-path="url(#hdclip)"><g class="hs"><use href="#hcard" y="12"/><use href="#hcard" y="60"/><use href="#hcard" y="108"/></g></g><g class="ha"><path d="M74 66V32M66 40L74 32L82 40" fill="none" stroke="#1f2a24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
-<div class="deck">
-<div class="pc it"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p1" width="200" height="160"/></svg><img src="images/lamp.jpg" alt="A handmade decorative flower lamp" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="bd"><h3>Decorative Flower Lamp</h3><div class="m">Materials: Waste papers, dried flowers and a suitable LED light.</div><p>A decorative lamp that combines reused materials with a natural floral design to create a unique home decoration.</p><div class="pr">[Insert price]</div><a class="btn" href="#contact">Order now</a></div></div>
-<div class="pc it"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p2" width="200" height="160"/></svg><img src="images/plant-holder.jpg" alt="The multi-purpose plant holder" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="bd"><h3>Multi-purpose Plant Holder</h3><div class="m">Materials: Reused cylindrical containers and cardboard or other suitable supporting materials.</div><p>A colourful and practical holder designed to organise small plants or everyday items.</p><div class="pr">[Insert price]</div><a class="btn" href="#contact">Order now</a></div></div>
-<div class="pc it"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p3" width="200" height="160"/></svg><img src="images/tote-bag.jpg" alt="A denim tote bag made from old jeans" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="bd"><h3>Denim Tote Bag</h3><div class="m">Materials: Old denim jeans and reused fabric scraps.</div><p>A stylish and reusable bag made from unwanted denim, giving old clothing a new purpose.</p><div class="pr">[Insert price]</div><a class="btn" href="#contact">Order now</a></div></div>
-<div class="pc it"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p4" width="200" height="160"/></svg><img src="images/wall-art.jpg" alt="Wall art made from recycled waste" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="bd"><h3>Recycled Wall Art</h3><div class="m">Materials: Waste materials, cardboard backing and adhesive.</div><p>A creative piece of artwork made from colourful waste materials, turning waste into decorative art.</p><div class="pr">[Insert price]</div><a class="btn" href="#contact">Order now</a></div></div>
-<div class="pc it"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p5" width="200" height="160"/></svg><img src="images/pencil-case.jpg" alt="A denim pencil case" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="bd"><h3>Denim Pencil Case</h3><div class="m">Materials: Old denim fabric and reused fabric scraps.</div><p>A practical stationery accessory made by repurposing old denim into something useful for everyday school life.</p><div class="pr">[Insert price]</div><a class="btn" href="#contact">Order now</a></div></div>
-</div><div class="dots" aria-hidden="true"></div></div></section>
-
-<section id="process" class="band ivory scene" data-s="flip"><div class="stage">
-<div><h2 class="t">From waste to worth</h2><p class="sub">Five steps from discarded material to finished product.</p></div>
-<div class="deck flip">
-<div class="fl it"><i>1</i><h3>Collection</h3><p>Gather discarded materials such as plastic, denim, cardboard and other reusable items.</p></div>
-<div class="fl it"><i>2</i><h3>Sorting</h3><p>Separate materials according to their type and suitability.</p></div>
-<div class="fl it"><i>3</i><h3>Preparation</h3><p>Clean and prepare the materials for reuse.</p></div>
-<div class="fl it"><i>4</i><h3>Creation</h3><p>Transform the materials into useful and attractive products.</p></div>
-<div class="fl it"><i>5</i><h3>Finishing</h3><p>Add final details to improve the appearance and functionality of each product.</p></div>
-</div><div class="dots" aria-hidden="true"></div></div></section>
-<div class="ivory" style="padding:8px 0 64px"><p class="after wrap">Every product represents a new purpose for materials that might otherwise be thrown away.</p></div>
-
-<section id="mission" class="band moss"><div class="wrap"><div class="mv">
-<div><h2>Our mission</h2><p>To reduce waste by transforming discarded materials into affordable, practical and creative products while encouraging sustainable lifestyles.</p></div>
-<div><h2>Our vision</h2><p>To contribute towards a cleaner and greener Maldives by inspiring people to reuse materials, reduce unnecessary waste and make environmentally responsible choices.</p></div>
+<section id="about" class="about band"><div class="wrap"><h2 class="t rv">Who we are</h2>
+<p class="rv">ReCrafted is a sustainable product brand that focuses on transforming waste materials into useful and attractive products.</p>
+<p class="rv">We started this business to show that discarded materials still have value and can be turned into something meaningful through creativity and innovation.</p>
+<p class="rv">Our products combine functionality, affordability and aesthetic designs while promoting the importance of reducing waste.</p></div></section>
+<section id="products" class="band sage"><div class="wrap"><h2 class="t rv">Our products</h2><p class="sub rv">Handmade from reused and recycled materials.</p>
+<div class="grid">
+<article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p1"/></svg><img src="images/lamp.jpg" alt="A handmade decorative flower lamp" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Decorative Flower Lamp</h3><div class="m">Materials: Waste papers, dried flowers and a suitable LED light.</div><p>A decorative lamp that combines reused materials with a natural floral design to create a unique home decoration.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
+<article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p2"/></svg><img src="images/plant-holder.jpg" alt="The multi-purpose plant holder" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Multi-purpose Plant Holder</h3><div class="m">Materials: Reused cylindrical containers and cardboard or other suitable supporting materials.</div><p>A colourful and practical holder designed to organise small plants or everyday items.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
+<article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p3"/></svg><img src="images/tote-bag.jpg" alt="A denim tote bag made from old jeans" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Denim Tote Bag</h3><div class="m">Materials: Old denim jeans and reused fabric scraps.</div><p>A stylish and reusable bag made from unwanted denim, giving old clothing a new purpose.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
+<article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p4"/></svg><img src="images/wall-art.jpg" alt="Wall art made from recycled waste" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Recycled Wall Art</h3><div class="m">Materials: Waste materials, cardboard backing and adhesive.</div><p>A creative piece of artwork made from colourful waste materials, turning waste into decorative art.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
+<article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p5"/></svg><img src="images/pencil-case.jpg" alt="A denim pencil case" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Denim Pencil Case</h3><div class="m">Materials: Old denim fabric and reused fabric scraps.</div><p>A practical stationery accessory made by repurposing old denim into something useful for everyday school life.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
 </div></div></section>
-
-<section class="band linen"><div class="wrap"><div class="quote"><p>ReCrafted transforms waste materials into aesthetic and functional products, combining creativity, affordability and sustainability in one brand.</p></div></div></section>
+<section id="process" class="band"><div class="wrap"><h2 class="t rv">From waste to worth</h2><p class="sub rv">Five steps from discarded material to finished product.</p>
+<div class="steps" id="steps">
+<div class="st"><i>1</i><h3>Collection</h3><p>Gather discarded materials such as plastic, denim, cardboard and other reusable items.</p></div>
+<div class="st"><i>2</i><h3>Sorting</h3><p>Separate materials according to their type and suitability.</p></div>
+<div class="st"><i>3</i><h3>Preparation</h3><p>Clean and prepare the materials for reuse.</p></div>
+<div class="st"><i>4</i><h3>Creation</h3><p>Transform the materials into useful and attractive products.</p></div>
+<div class="st"><i>5</i><h3>Finishing</h3><p>Add final details to improve the appearance and functionality of each product.</p></div>
+</div><p class="after rv">Every product represents a new purpose for materials that might otherwise be thrown away.</p></div></section>
+<section id="mission" class="band moss"><div class="wrap"><div class="mv">
+<div class="rv"><h2>Our mission</h2><p>To reduce waste by transforming discarded materials into affordable, practical and creative products while encouraging sustainable lifestyles.</p></div>
+<div class="rv"><h2>Our vision</h2><p>To contribute towards a cleaner and greener Maldives by inspiring people to reuse materials, reduce unnecessary waste and make environmentally responsible choices.</p></div></div></div></section>
+<section class="band linen"><div class="wrap quote"><p class="rv">ReCrafted transforms waste materials into aesthetic and functional products, combining creativity, affordability and sustainability in one brand.</p></div></section>
 </main>
-
 <footer id="contact"><div class="wrap cols">
-<div><h3>We’d love to hear from you</h3><p>Have questions about our products or interested in making an order? Get in touch with ReCrafted.</p></div>
-<div><h3>Contact us</h3><p>Instagram: [Insert account]</p><p>Email: [Insert email]</p><p>Location: Maldives</p></div>
-<div><h3>ReCrafted</h3><p>Together, let’s make a difference, one creation at a time.</p></div>
-</div><div class="bar">© 2026 ReCrafted, Maldives</div></footer>
-
+<div class="rv"><h3>We’d love to hear from you</h3><p>Have questions about our products or interested in making an order? Get in touch with ReCrafted.</p></div>
+<div class="rv"><h3>Contact us</h3><a class="soc" href="https://instagram.com/YOUR_ACCOUNT" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg><span>Instagram</span></a><a class="soc" href="mailto:YOUR_EMAIL@example.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg><span>Email</span></a><a class="soc" href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8.5h2.5V5H14c-2.2 0-3.5 1.4-3.5 3.6V11H8v3.5h2.5V21H14v-6.5h2.4l.6-3.5H14V8.8c0-.2.1-.3.3-.3z"/></svg><span>Facebook</span></a></div>
+<div class="rv"><h3>ReCrafted</h3><p>Together, let’s make a difference, one creation at a time.</p></div>
+</div><div class="bar">© 2026 ReCrafted, Maldives<span class="by">Made by: panda1021</span></div></footer>
 <script>
-(function(){var d=document,h=d.documentElement,rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
-h.classList.add("js");var st=window.CSS&&CSS.supports&&CSS.supports("position","sticky");if(st)h.classList.add("pin");
-d.querySelectorAll(".values>.wrap>div,.about .wrap>*,.mv>div,.after,footer .cols>div").forEach(function(e){e.classList.add("rv");e.style.setProperty("--i",Math.min([].indexOf.call(e.parentNode.children,e),3))});
-d.querySelectorAll(".quote p").forEach(function(e){e.classList.add("wipe")});
-var els=d.querySelectorAll(".rv,.wipe"),io;
-if("IntersectionObserver"in window){io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.15,rootMargin:"0px 0px -6% 0px"});els.forEach(function(e){io.observe(e)})}else els.forEach(function(e){e.classList.add("in")});
-var p=d.getElementById("prog");
-function prog(){var y=scrollY,m=h.scrollHeight-innerHeight;p.style.setProperty("--sp",m>0?y/m:0);h.style.setProperty("--hp",rm?0:Math.min(y,700)*.22)}
-if(!st){addEventListener("scroll",prog,{passive:true});return}
-var sc=[].map.call(d.querySelectorAll(".scene"),function(sec){var its=[].slice.call(sec.querySelectorAll(".it")),dots=sec.querySelector(".dots");
-sec.style.setProperty("--n",its.length);its.forEach(function(){dots.appendChild(d.createElement("span"))});
-return{sec:sec,its:its,n:its.length,dots:[].slice.call(dots.children),pos:-1,a:null,col:0,flip:sec.dataset.s=="flip"}});
-function raw(o){if(o.col)return o.n-1;var r=o.sec.getBoundingClientRect(),t=o.sec.offsetHeight-innerHeight;if(t<=0)return 0;return Math.min(1,Math.max(0,-r.top/t))*(o.n-1)}
-function tgt(o){var q=raw(o),a=o.a;if(a!=null)q=Math.min(a+1,Math.max(a-1,q));var f=Math.floor(q),s=Math.min(1,Math.max(0,(q-f-.2)/.6));return Math.min(o.n-1,f+s*s*(3-2*s))}
-function paint(o){o.its.forEach(function(e,i){var dd=i-o.pos,a=Math.abs(dd),tr,op;
-if(rm){op=Math.max(0,1-a*1.6);tr="scale("+(1-a*.04)+")"}else if(o.flip){op=Math.max(0,1-a*1.8);tr="translateY("+dd*70+"px) rotateX("+dd*-55+"deg) scale("+(1-a*.08)+")"}
-else if(dd<=0){op=Math.max(0,1-a*1.1);tr="translate3d(0,"+(-a*90)+"px,"+(-a*200)+"px) rotateX("+a*40+"deg)"}
-else{op=Math.max(0,1-dd*.55);tr="translate3d(0,"+dd*34+"px,"+(-dd*180)+"px) scale("+(1-dd*.04)+")"}
-var s=e.style;s.opacity=op;s.transform=tr;s.zIndex=Math.round(100-a*10);s.pointerEvents=a<.5?"auto":"none";s.visibility="visible"});
-o.dots.forEach(function(s,i){s.className=Math.abs(i-o.pos)<.5?"on":""})}
-sc.forEach(function(o){o.its.forEach(function(e,i){e.addEventListener("focusin",function(){if(Math.abs(i-o.pos)<.5)return;scrollTo({top:o.sec.getBoundingClientRect().top+scrollY+i/(o.n-1)*(o.sec.offsetHeight-innerHeight),behavior:"auto"})})})});
-var lastY=scrollY,skipT=0,touching=0,tm=0,tw=0;
-addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a)skipT=performance.now()+1600},true);
-function stop(){cancelAnimationFrame(tw)}
-var lk=0,lt=0,coarse=matchMedia("(pointer:coarse)").matches;
-function lockScroll(ms,top){stop();scrollTo({top:top,behavior:"instant"});if(!coarse)return;h.style.overflow="hidden";lk=1;clearTimeout(lt);lt=setTimeout(function(){h.style.overflow="";lk=0},ms)}
-addEventListener("touchmove",function(e){if(lk&&e.cancelable)e.preventDefault()},{passive:false});
-function tween(to){stop();var y0=scrollY,t0=performance.now();if(Math.abs(to-y0)<3)return;function st(now){var k=Math.max(0,Math.min(1,(now-t0)/240));k=1-Math.pow(1-k,3);scrollTo({top:y0+(to-y0)*k,behavior:"instant"});if(k<1)tw=requestAnimationFrame(st)}tw=requestAnimationFrame(st)}
-function snap(){if(touching||performance.now()<skipT)return;var y=scrollY;sc.forEach(function(o){if(o.col)return;var T=o.sec.getBoundingClientRect().top+y,span=o.sec.offsetHeight-innerHeight;if(span<=0||y<T||y>T+span)return;var q=(y-T)/span*(o.n-1),a=o.a==null?Math.round(q):o.a,d=q-a,i=d>.25?a+1:d<-.25?a-1:a;i=Math.max(0,Math.min(o.n-1,i));o.a=i;tween(T+i/(o.n-1)*span)})}
-function later(){clearTimeout(tm);tm=setTimeout(snap,90)}
-addEventListener("scroll",later,{passive:true});
-addEventListener("touchstart",function(){touching=1;clearTimeout(tm);stop();if(!lk)sc.forEach(function(o){o.gate=0})},{passive:true});
-addEventListener("touchend",function(){touching=0;later()},{passive:true});
-addEventListener("touchcancel",function(){touching=0;later()},{passive:true});
-function rel(){var n=performance.now();sc.forEach(function(o){if(n>(o.hold||0)+250)o.gate=0})}
-addEventListener("wheel",function(){stop();rel()},{passive:true});addEventListener("keydown",function(){stop();rel()});
-function tick(){prog();var y=scrollY;
-if(y<lastY&&performance.now()>skipT){sc.forEach(function(o){if(o.col)return;var T=o.sec.getBoundingClientRect().top+y,E=T+o.sec.offsetHeight-innerHeight;if(E>T&&lastY>E+2&&y<=E){o.col=1;o.sec.classList.add("col");o.pos=o.n-1;o.a=o.n-1;scrollTo({top:T,behavior:"instant"});y=T}})}
-lastY=y;
-sc.forEach(function(o){var r=o.sec.getBoundingClientRect();
-if(o.col&&r.top>innerHeight){o.col=0;o.sec.classList.remove("col");o.pos=-1;o.a=0;r=o.sec.getBoundingClientRect()}
-if(r.bottom<-300||r.top>innerHeight+300){o.pos=-1;o.gate=0;o.a=r.top>0?0:o.n-1;return}
-if(o.col)o.a=o.n-1;else if(r.top>1){o.a=0;o.gate=0}else if(r.bottom<innerHeight-1){o.a=o.n-1;o.gate=0}else if(o.a==null)o.a=Math.round(raw(o));
-if(!o.col&&o.a!=null&&r.top<=1&&r.bottom>=innerHeight-1){var T=r.top+scrollY,span=o.sec.offsetHeight-innerHeight,stp=span/(o.n-1),now=performance.now(),yy=scrollY,hold=now<(o.hold||0),hi=hold?T+o.a*stp:(o.a<o.n-1?T+(o.a+1)*stp:1e9),lo=hold?hi:(o.a>0?T+(o.a-1)*stp:-1e9);if(!hold&&o.gate){if(o.a==o.n-1)hi=T+span;else if(o.a==0)lo=T}
-if(yy>hi+1||yy<lo-1){stop();scrollTo({top:yy>hi?hi:lo,behavior:"instant"});yy=scrollY}
-if(!hold){if(o.a<o.n-1&&yy>=hi-2){o.a++;o.hold=now+420;if(o.a==o.n-1){o.gate=1;lockScroll(450,T+span)}}else if(o.a>0&&yy<=lo+2){o.a--;o.hold=now+420;if(o.a==0){o.gate=1;lockScroll(450,T)}}}}
-var t=tgt(o);o.pos=(o.pos<0||rm)?t:o.pos+(t-o.pos)*.14;if(Math.abs(t-o.pos)<.002)o.pos=t;paint(o)});requestAnimationFrame(tick)}
-tick()})();
+(function(){var d=document,h=d.documentElement,l=d.getElementById("ld"),rm=matchMedia("(prefers-reduced-motion:reduce)").matches,T=[].slice.call(d.querySelectorAll("header.nav,main,footer")),pbar=l.querySelector(".pb i"),opened=0,done=0,ac,t0=0,min=rm?1800:4400,loaded=d.readyState=="complete";
+T.forEach(function(e){e.setAttribute("inert","")});
+function setPb(p){pbar.style.transform="scaleX("+p+")"}setPb(.15);
+addEventListener("load",function(){loaded=1});
+function pop(){var t=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.setValueAtTime(900,t);o.frequency.exponentialRampToValueAtTime(420,t+.07);g.gain.setValueAtTime(.16,t);g.gain.exponentialRampToValueAtTime(.0001,t+.09);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+.1)}
+function chime(){var t=ac.currentTime,m=ac.createGain();m.gain.value=.22;m.connect(ac.destination);var dl=ac.createDelay();dl.delayTime.value=.22;var fb=ac.createGain();fb.gain.value=.3;var wt=ac.createGain();wt.gain.value=.3;m.connect(dl);dl.connect(fb);fb.connect(dl);dl.connect(wt);wt.connect(ac.destination);
+function note(f,at,v,len,ty){var o=ac.createOscillator(),g=ac.createGain();o.type=ty||"triangle";o.frequency.value=f;g.gain.setValueAtTime(0,at);g.gain.linearRampToValueAtTime(v,at+.005);g.gain.exponentialRampToValueAtTime(.0001,at+len);o.connect(g);g.connect(m);o.start(at);o.stop(at+len+.05)}
+note(146.83,t,.18,1.4,"sine");[587.33,739.99,880,1174.66,1479.98].forEach(function(f,i){note(f,t+.04+i*.09,.34-i*.03,.8)});note(2349.3,t+.5,.1,1.5,"sine")}
+function fin(){if(done)return;done=1;setPb(1);setTimeout(function(){l.classList.add("out");h.classList.remove("ld");h.classList.add("go");T.forEach(function(e){e.removeAttribute("inert")});setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},1100)},Math.max(0,min-(performance.now()-t0))+250)}
+function ph(c,ms){setTimeout(function(){l.classList.add(c)},ms)}
+function open(){if(opened)return;opened=1;try{navigator.vibrate&&navigator.vibrate(10)}catch(x){}
+try{var C=window.AudioContext||window.webkitAudioContext;if(C){ac=new C();ac.resume&&ac.resume();pop()}}catch(x){}
+t0=performance.now();l.classList.add("p1");setPb(.6);ph("p2",rm?200:850);ph("p3",rm?500:2000);
+setTimeout(function(){l.classList.add("p4");if(ac)try{ac.state==="running"?chime():ac.resume().then(chime,function(){})}catch(x){}},rm?800:3500);
+if(loaded)fin();else addEventListener("load",fin);setTimeout(fin,9000)}
+l.addEventListener("pointerdown",open);l.addEventListener("keydown",function(e){if(e.key){e.preventDefault();open()}});l.focus({preventScroll:true});
+/* reveals */
+d.querySelectorAll(".values .rv,.mv .rv,footer .rv").forEach(function(e){e.style.setProperty("--i",[].indexOf.call(e.parentNode.children,e))});
+d.querySelectorAll(".grid .rv").forEach(function(e,i){e.style.setProperty("--i",i%3)});
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.15});
+d.querySelectorAll(".rv").forEach(function(e){io.observe(e)});
+/* progress, parallax steps, nav state */
+var p=d.getElementById("prog"),steps=[].slice.call(d.querySelectorAll(".st")),ls=[].slice.call(d.querySelectorAll("nav a"));
+function sc(){var m=h.scrollHeight-innerHeight;p.style.setProperty("--sp",m>0?scrollY/m:0);
+var cur=-1;steps.forEach(function(s,i){if(s.getBoundingClientRect().top<innerHeight*.62)cur=i});steps.forEach(function(s,i){s.classList.toggle("on",i==cur);s.classList.toggle("done",i<cur)});
+var c=-1;ls.forEach(function(a,i){var e=d.querySelector(a.getAttribute("href"));if(e&&e.getBoundingClientRect().top<=innerHeight*.4)c=i});ls.forEach(function(a,i){a.classList.toggle("on",i==c)})}
+addEventListener("scroll",sc,{passive:true});sc();
+/* hero mouse parallax */
+if(!rm&&matchMedia("(hover:hover)").matches){var hero=d.getElementById("home");hero.addEventListener("pointermove",function(e){var r=hero.getBoundingClientRect();hero.style.setProperty("--mx",((e.clientX-r.left)/r.width-.5)*-24);hero.style.setProperty("--my",((e.clientY-r.top)/r.height-.5)*-16)});
+d.querySelectorAll(".pc").forEach(function(c){c.addEventListener("pointermove",function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.setProperty("--ry",((x-.5)*10)+"deg");c.style.setProperty("--rx",((.5-y)*8)+"deg");c.style.setProperty("--gx",x*100+"%");c.style.setProperty("--gy",y*100+"%")});c.addEventListener("pointerleave",function(){c.style.setProperty("--rx","0deg");c.style.setProperty("--ry","0deg")})})}
+/* menu */
+var hd=d.querySelector("header.nav"),b=hd.querySelector(".mb");
+function set(o){hd.classList.toggle("open",o);b.setAttribute("aria-expanded",o);b.setAttribute("aria-label",o?"Close menu":"Open menu")}
+b.addEventListener("click",function(){set(!hd.classList.contains("open"))});ls.forEach(function(a){a.addEventListener("click",function(){set(false)})});
+d.addEventListener("keydown",function(e){if(e.key==="Escape")set(false)})})();
 </script>
-<script>
-(function(){var h=document.documentElement,l=document.getElementById("ld");if(!l||!h.classList.contains("ld"))return;
-var b=l.querySelector(".pb i"),t0=performance.now(),min=2400,done=0;
-function set(p){var t="scaleX("+p+")";b.style.webkitTransform=t;b.style.transform=t}set(.15);
-function fin(){if(done)return;done=1;set(1);setTimeout(function(){l.classList.add("out");h.classList.remove("ld");setTimeout(function(){h.classList.remove("ldv");if(l.parentNode)l.parentNode.removeChild(l)},900)},Math.max(0,min-(performance.now()-t0))+250)}
-document.addEventListener("DOMContentLoaded",function(){set(.6)});
-if(document.readyState=="complete")fin();else addEventListener("load",fin);setTimeout(fin,6000)})();
-</script>
-<script>
-(function(){var d=document,hd=d.querySelector("header.nav"),b=hd.querySelector(".mb");
-function set(o){hd.classList.toggle("open",o);b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"Close menu":"Open menu")}
-b.addEventListener("click",function(){set(!hd.classList.contains("open"))});
-[].forEach.call(hd.querySelectorAll("nav a"),function(a){a.addEventListener("click",function(){set(false)})});
-d.addEventListener("keydown",function(e){if(e.key==="Escape"&&hd.classList.contains("open")){set(false);b.focus()}});
-d.addEventListener("click",function(e){if(!hd.contains(e.target))set(false)});
-addEventListener("resize",function(){if(innerWidth>820)set(false)})})();
-</script>
-<script>
-(function(){var s=document.getElementById("products"),k=document.querySelector(".hint");if(!s||!k)return;
-function chk(){if(-s.getBoundingClientRect().top>60){k.classList.add("gone");removeEventListener("scroll",chk)}}
-addEventListener("scroll",chk,{passive:true});chk()})();
-</script>
-</body>
-</html>
+</body></html>
