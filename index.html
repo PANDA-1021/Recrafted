@@ -270,20 +270,21 @@ function tween(to){stop();var y0=scrollY,t0=performance.now();if(Math.abs(to-y0)
 function snap(){if(touching||performance.now()<skipT)return;var y=scrollY;sc.forEach(function(o){if(o.col)return;var T=o.sec.getBoundingClientRect().top+y,span=o.sec.offsetHeight-innerHeight;if(span<=0||y<T||y>T+span)return;var q=(y-T)/span*(o.n-1),a=o.a==null?Math.round(q):o.a,d=q-a,i=d>.25?a+1:d<-.25?a-1:a;i=Math.max(0,Math.min(o.n-1,i));o.a=i;tween(T+i/(o.n-1)*span)})}
 function later(){clearTimeout(tm);tm=setTimeout(snap,90)}
 addEventListener("scroll",later,{passive:true});
-addEventListener("touchstart",function(){touching=1;clearTimeout(tm);stop()},{passive:true});
+addEventListener("touchstart",function(){touching=1;clearTimeout(tm);stop();sc.forEach(function(o){o.gate=0})},{passive:true});
 addEventListener("touchend",function(){touching=0;later()},{passive:true});
 addEventListener("touchcancel",function(){touching=0;later()},{passive:true});
-addEventListener("wheel",stop,{passive:true});addEventListener("keydown",stop);
+function rel(){var n=performance.now();sc.forEach(function(o){if(n>(o.hold||0)+250)o.gate=0})}
+addEventListener("wheel",function(){stop();rel()},{passive:true});addEventListener("keydown",function(){stop();rel()});
 function tick(){prog();var y=scrollY;
 if(y<lastY&&performance.now()>skipT){sc.forEach(function(o){if(o.col)return;var T=o.sec.getBoundingClientRect().top+y,E=T+o.sec.offsetHeight-innerHeight;if(E>T&&lastY>E+2&&y<=E){o.col=1;o.sec.classList.add("col");o.pos=o.n-1;o.a=o.n-1;scrollTo({top:T,behavior:"instant"});y=T}})}
 lastY=y;
 sc.forEach(function(o){var r=o.sec.getBoundingClientRect();
 if(o.col&&r.top>innerHeight){o.col=0;o.sec.classList.remove("col");o.pos=-1;o.a=0;r=o.sec.getBoundingClientRect()}
-if(r.bottom<-300||r.top>innerHeight+300){o.pos=-1;o.a=r.top>0?0:o.n-1;return}
-if(o.col)o.a=o.n-1;else if(r.top>0)o.a=0;else if(r.bottom<=innerHeight)o.a=o.n-1;else if(o.a==null)o.a=Math.round(raw(o));
-if(!o.col&&o.a!=null&&r.top<=0&&r.bottom>innerHeight){var T=r.top+scrollY,span=o.sec.offsetHeight-innerHeight,stp=span/(o.n-1),now=performance.now(),yy=scrollY,hold=now<(o.hold||0),hi=hold?T+o.a*stp:(o.a<o.n-1?T+(o.a+1)*stp:1e9),lo=hold?hi:(o.a>0?T+(o.a-1)*stp:-1e9);
+if(r.bottom<-300||r.top>innerHeight+300){o.pos=-1;o.gate=0;o.a=r.top>0?0:o.n-1;return}
+if(o.col)o.a=o.n-1;else if(r.top>0){o.a=0;o.gate=0}else if(r.bottom<=innerHeight){o.a=o.n-1;o.gate=0}else if(o.a==null)o.a=Math.round(raw(o));
+if(!o.col&&o.a!=null&&r.top<=0&&r.bottom>innerHeight){var T=r.top+scrollY,span=o.sec.offsetHeight-innerHeight,stp=span/(o.n-1),now=performance.now(),yy=scrollY,hold=now<(o.hold||0),hi=hold?T+o.a*stp:(o.a<o.n-1?T+(o.a+1)*stp:1e9),lo=hold?hi:(o.a>0?T+(o.a-1)*stp:-1e9);if(!hold&&o.gate){if(o.a==o.n-1)hi=T+span;else if(o.a==0)lo=T}
 if(yy>hi+1||yy<lo-1){stop();scrollTo({top:yy>hi?hi:lo,behavior:"instant"});yy=scrollY}
-if(!hold){if(o.a<o.n-1&&yy>=hi-2){o.a++;o.hold=now+420}else if(o.a>0&&yy<=lo+2){o.a--;o.hold=now+420}}}
+if(!hold){if(o.a<o.n-1&&yy>=hi-2){o.a++;o.hold=now+420;if(o.a==o.n-1)o.gate=1}else if(o.a>0&&yy<=lo+2){o.a--;o.hold=now+420;if(o.a==0)o.gate=1}}}
 var t=tgt(o);o.pos=(o.pos<0||rm)?t:o.pos+(t-o.pos)*.14;if(Math.abs(t-o.pos)<.002)o.pos=t;paint(o)});requestAnimationFrame(tick)}
 tick()})();
 </script>
