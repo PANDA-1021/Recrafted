@@ -138,18 +138,14 @@ html.ld,.ld body{overflow:hidden}
 .nav nav a{font-size:1.1rem;padding:15px 4px;color:var(--ink);border-bottom:1px solid var(--line)}
 .nav nav a:last-child{border-bottom:0}
 }
-/* scroll hint: phone + hand */
-.hd{display:flex;align-items:center;justify-content:center;gap:14px}.hd>div{min-width:0}
-.hint{flex:none;width:64px;height:auto;overflow:hidden;filter:drop-shadow(0 8px 8px rgba(31,42,36,.25))}
-.hs{animation:hdscroll 2.8s cubic-bezier(.5,0,.2,1) infinite}
-.hh{animation:hdswipe 2.8s cubic-bezier(.5,0,.2,1) infinite;filter:drop-shadow(0 1px 1.5px rgba(31,42,36,.35))}
-.hr{transform-box:fill-box;transform-origin:center;animation:hdtap 2.8s ease-out infinite}
-.ha{animation:hdarrow 2.8s ease-in-out infinite}
-@keyframes hdscroll{0%,14%{transform:translateY(0)}74%,100%{transform:translateY(-48px)}}
-@keyframes hdswipe{0%{transform:translateY(22px);opacity:0}10%,14%{transform:translateY(22px);opacity:1}74%{transform:translateY(-30px);opacity:1}90%,100%{transform:translateY(-30px);opacity:0}}
-@keyframes hdtap{0%{opacity:0;transform:scale(.3)}12%{opacity:.55;transform:scale(1)}30%,72%{opacity:.25;transform:scale(1.4)}88%,100%{opacity:0;transform:scale(1.4)}}
-@keyframes hdarrow{0%,12%{opacity:0;transform:translateY(8px)}40%{opacity:.85}74%,100%{opacity:0;transform:translateY(-8px)}}
-@media (prefers-reduced-motion:reduce){.hs,.hh,.hr,.ha{animation:none}.hr{opacity:0}}
+/* scroll hint: phone */
+.hd{display:flex;align-items:center;justify-content:center;gap:12px}.hd>div{min-width:0}
+.hint{flex:none;width:44px;height:auto;overflow:hidden;opacity:.9;filter:drop-shadow(0 4px 5px rgba(31,42,36,.22));transition:opacity .4s ease,width .45s ease,margin .45s ease}
+.hint.gone{opacity:0;width:0;margin-left:-12px}
+.hs{animation:hdscroll 1.8s cubic-bezier(.5,0,.2,1) infinite}.ha{animation:hdarrow 1.8s ease-in-out infinite}
+@keyframes hdscroll{0%,6%{transform:translateY(0)}72%,100%{transform:translateY(-48px)}}
+@keyframes hdarrow{0%,6%{opacity:0;transform:translateY(8px)}30%{opacity:.85}72%,100%{opacity:0;transform:translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){.hs,.ha{animation:none}}
 </style>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20120%20120%27%3E%3Crect%20width%3D%27120%27%20height%3D%27120%27%20rx%3D%2726%27%20fill%3D%27%23f7f3e8%27/%3E%3Cpath%20d%3D%27M95.2%2030.4A46%2046%200%201%201%2060%2014%27%20fill%3D%27none%27%20stroke%3D%27%231f2a24%27%20stroke-width%3D%279%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M60%2090C32%2086%2026%2060%2036%2042C52%2047%2064%2064%2060%2090Z%27%20fill%3D%27%238fb07b%27/%3E%3Cpath%20d%3D%27M60%2090C90%2085%2096%2056%2084%2036C67%2042%2057%2064%2060%2090Z%27%20fill%3D%27%234f6b43%27/%3E%3C/svg%3E">
 <script>(function(){var h=document.documentElement;if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;h.classList.add("ld");h.classList.add("ldv");setTimeout(function(){h.classList.remove("ld","ldv")},8000)})()</script>
@@ -208,11 +204,9 @@ html.ld,.ld body{overflow:hidden}
 
 <section id="products" class="band sage scene"><div class="stage">
 <div class="hd"><div><h2 class="t">Our products</h2><p class="sub">Handmade from reused and recycled materials.</p></div>
-<svg class="hint" viewBox="0 0 90 130" aria-hidden="true"><defs><clipPath id="hdclip"><rect x="14" y="8" width="44" height="84" rx="6"/></clipPath><g id="hcard"><rect x="18" width="36" height="42" rx="5" fill="#fffdf7" stroke="#d8d2bf"/><rect x="21" y="3" width="30" height="22" rx="3" fill="#cfdcc0"/><circle cx="36" cy="14" r="5" fill="#8fb07b"/><rect x="21" y="29" width="22" height="3" rx="1.5" fill="#4d5a50" opacity=".5"/><rect x="21" y="35" width="14" height="3" rx="1.5" fill="#4d5a50" opacity=".3"/></g></defs>
+<svg class="hint" viewBox="8 0 76 100" aria-hidden="true"><defs><clipPath id="hdclip"><rect x="14" y="8" width="44" height="84" rx="6"/></clipPath><g id="hcard"><rect x="18" width="36" height="42" rx="5" fill="#fffdf7" stroke="#d8d2bf"/><rect x="21" y="3" width="30" height="22" rx="3" fill="#cfdcc0"/><circle cx="36" cy="14" r="5" fill="#8fb07b"/><rect x="21" y="29" width="22" height="3" rx="1.5" fill="#4d5a50" opacity=".5"/><rect x="21" y="35" width="14" height="3" rx="1.5" fill="#4d5a50" opacity=".3"/></g></defs>
 <rect x="10" y="2" width="52" height="96" rx="10" fill="#1f2a24"/><rect x="14" y="8" width="44" height="84" rx="6" fill="#f7f3e8"/><rect x="29" y="3.6" width="14" height="2.4" rx="1.2" fill="#4a5e50"/>
-<g clip-path="url(#hdclip)"><g class="hs"><use href="#hcard" y="12"/><use href="#hcard" y="60"/><use href="#hcard" y="108"/></g></g>
-<g class="ha"><path d="M78 62V30M71 38L78 30L85 38" fill="none" stroke="#1f2a24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g transform="translate(36 66)"><g class="hh"><circle class="hr" cx="0" cy="3" r="9" fill="#4f6b43" opacity=".35"/><g fill="#efc9a8"><rect x="-15" y="26" width="30" height="46" rx="13"/><rect x="-24" y="30" width="11" height="24" rx="5.5" transform="rotate(-22 -18 42)"/><rect x="-5.5" y="-2" width="11" height="48" rx="5.5"/></g></g></g></svg></div>
+<g clip-path="url(#hdclip)"><g class="hs"><use href="#hcard" y="12"/><use href="#hcard" y="60"/><use href="#hcard" y="108"/></g></g><g class="ha"><path d="M74 66V32M66 40L74 32L82 40" fill="none" stroke="#1f2a24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
 <div class="deck">
 <div class="pc it"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p1" width="200" height="160"/></svg><img src="images/lamp.jpg" alt="A handmade decorative flower lamp" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="bd"><h3>Decorative Flower Lamp</h3><div class="m">Materials: Waste papers, dried flowers and a suitable LED light.</div><p>A decorative lamp that combines reused materials with a natural floral design to create a unique home decoration.</p><div class="pr">[Insert price]</div><a class="btn" href="#contact">Order now</a></div></div>
 <div class="pc it"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p2" width="200" height="160"/></svg><img src="images/plant-holder.jpg" alt="The multi-purpose plant holder" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="bd"><h3>Multi-purpose Plant Holder</h3><div class="m">Materials: Reused cylindrical containers and cardboard or other suitable supporting materials.</div><p>A colourful and practical holder designed to organise small plants or everyday items.</p><div class="pr">[Insert price]</div><a class="btn" href="#contact">Order now</a></div></div>
@@ -286,6 +280,11 @@ b.addEventListener("click",function(){set(!hd.classList.contains("open"))});
 d.addEventListener("keydown",function(e){if(e.key==="Escape"&&hd.classList.contains("open")){set(false);b.focus()}});
 d.addEventListener("click",function(e){if(!hd.contains(e.target))set(false)});
 addEventListener("resize",function(){if(innerWidth>820)set(false)})})();
+</script>
+<script>
+(function(){var s=document.getElementById("products"),k=document.querySelector(".hint");if(!s||!k)return;
+function chk(){if(-s.getBoundingClientRect().top>60){k.classList.add("gone");removeEventListener("scroll",chk)}}
+addEventListener("scroll",chk,{passive:true});chk()})();
 </script>
 </body>
 </html>
