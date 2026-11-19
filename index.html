@@ -281,6 +281,9 @@ sc.forEach(function(o){var r=o.sec.getBoundingClientRect();
 if(o.col&&r.top>innerHeight){o.col=0;o.sec.classList.remove("col");o.pos=-1;o.a=0;r=o.sec.getBoundingClientRect()}
 if(r.bottom<-300||r.top>innerHeight+300){o.pos=-1;o.a=r.top>0?0:o.n-1;return}
 if(o.col)o.a=o.n-1;else if(r.top>0)o.a=0;else if(r.bottom<=innerHeight)o.a=o.n-1;else if(o.a==null)o.a=Math.round(raw(o));
+if(!o.col&&o.a!=null&&r.top<=0&&r.bottom>innerHeight){var T=r.top+scrollY,span=o.sec.offsetHeight-innerHeight,stp=span/(o.n-1),now=performance.now(),yy=scrollY,hold=now<(o.hold||0),hi=hold?T+o.a*stp:(o.a<o.n-1?T+(o.a+1)*stp:1e9),lo=hold?hi:(o.a>0?T+(o.a-1)*stp:-1e9);
+if(yy>hi+1||yy<lo-1){stop();scrollTo({top:yy>hi?hi:lo,behavior:"instant"});yy=scrollY}
+if(!hold){if(o.a<o.n-1&&yy>=hi-2){o.a++;o.hold=now+420}else if(o.a>0&&yy<=lo+2){o.a--;o.hold=now+420}}}
 var t=tgt(o);o.pos=(o.pos<0||rm)?t:o.pos+(t-o.pos)*.14;if(Math.abs(t-o.pos)<.002)o.pos=t;paint(o)});requestAnimationFrame(tick)}
 tick()})();
 </script>
