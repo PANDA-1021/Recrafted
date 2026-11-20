@@ -76,11 +76,12 @@ h1 span{display:block;overflow:hidden;padding-bottom:.1em}h1 i{display:block;fon
 .values{position:relative;overflow:hidden}.values .wrap{position:relative;z-index:1}
 .values .wrap>div{position:relative;z-index:1}
 .fxwrap{position:relative}
-canvas.fluid,canvas.splat{position:absolute;left:0;top:0;width:100%;z-index:0;pointer-events:none;opacity:0}
-canvas.fluid{filter:url(#goo)}canvas.splat{filter:url(#goo2)}
+canvas.fluid,canvas.splat,canvas.stream,canvas.drop{position:absolute;left:0;top:0;width:100%;z-index:0;pointer-events:none;opacity:0}
+canvas.drop{z-index:3}canvas.fluid{filter:url(#goo)}canvas.splat{filter:url(#goo2)}
 .about .wrap{position:relative;z-index:1}
+#products .wrap{position:relative;z-index:1}
 .about h2.t{transition:opacity .6s,transform .7s var(--e),color .35s ease}.about h2.t.painted{color:#f7f3e8}
-@media(prefers-reduced-motion:reduce){canvas.fluid,canvas.splat{display:none}}
+@media(prefers-reduced-motion:reduce){canvas.fluid,canvas.splat,canvas.stream,canvas.drop{display:none}}
 .band{padding:72px 0}h2.t{font-size:1.9rem;text-align:center;margin:0 0 8px;line-height:1.2;text-wrap:balance}.sub{text-align:center;color:var(--mute);max-width:560px;margin:0 auto 8px}
 .about p{text-align:center;max-width:620px;margin:0 auto 22px;line-height:1.8;font-size:1.02rem;color:var(--mute)}.about h2.t{margin-bottom:40px}
 .sage{background:linear-gradient(165deg,#c5d0b7,#a9b99a)}.linen{background:var(--linen)}
@@ -165,7 +166,6 @@ footer h3{font-size:1.2rem;margin:0 0 8px}footer p{margin:0 0 6px;font-size:.9re
 <p class="rv">ReCrafted is a sustainable product brand that focuses on transforming waste materials into useful and attractive products.</p>
 <p class="rv">We started this business to show that discarded materials still have value and can be turned into something meaningful through creativity and innovation.</p>
 <p class="rv">Our products combine functionality, affordability and aesthetic designs while promoting the importance of reducing waste.</p></div></section>
-<canvas class="fluid" aria-hidden="true"></canvas><canvas class="splat" aria-hidden="true"></canvas></div>
 <section id="products" class="band sage"><div class="wrap"><h2 class="t rv">Our products</h2><p class="sub rv">Handmade from reused and recycled materials.</p>
 <div class="grid">
 <article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p1"/></svg><img src="images/lamp.jpg" alt="A handmade decorative flower lamp" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Decorative Flower Lamp</h3><div class="m">Materials: Waste papers, dried flowers and a suitable LED light.</div><p>A decorative lamp that combines reused materials with a natural floral design to create a unique home decoration.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
@@ -174,6 +174,7 @@ footer h3{font-size:1.2rem;margin:0 0 8px}footer p{margin:0 0 6px;font-size:.9re
 <article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p4"/></svg><img src="images/wall-art.jpg" alt="Wall art made from recycled waste" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Recycled Wall Art</h3><div class="m">Materials: Waste materials, cardboard backing and adhesive.</div><p>A creative piece of artwork made from colourful waste materials, turning waste into decorative art.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
 <article class="pc rv"><div class="im"><svg viewBox="0 0 200 160" aria-hidden="true"><use href="#p5"/></svg><img src="images/pencil-case.jpg" alt="A denim pencil case" loading="lazy" onerror="this.remove()"></div><div class="bd"><h3>Denim Pencil Case</h3><div class="m">Materials: Old denim fabric and reused fabric scraps.</div><p>A practical stationery accessory made by repurposing old denim into something useful for everyday school life.</p><div class="pr">[Insert price]</div><a class="btn o" href="#contact">Order now</a></div></article>
 </div></div></section>
+<canvas class="fluid" aria-hidden="true"></canvas><canvas class="splat" aria-hidden="true"></canvas><canvas class="stream" aria-hidden="true"></canvas><canvas class="drop" aria-hidden="true"></canvas></div>
 <section id="process" class="band"><div class="wrap"><h2 class="t rv">From waste to worth</h2><p class="sub rv">Five steps from discarded material to finished product.</p>
 <div class="steps" id="steps">
 <div class="st"><i>1</i><h3>Collection</h3><p>Gather discarded materials such as plastic, denim, cardboard and other reusable items.</p></div>
@@ -232,12 +233,13 @@ d.addEventListener("keydown",function(e){if(e.key==="Escape")set(false)})})();
 <script>
 (function(){
 var d=document,sec=d.querySelector(".values"),fx=d.querySelector(".fxwrap"),ab=d.getElementById("about");
-if(!sec||!fx||!ab||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
+if(!sec||!fx||!ab||!d.querySelector("#products h2")||matchMedia("(prefers-reduced-motion:reduce)").matches)return;
 var cvA=fx.querySelector("canvas.fluid"),cvB=fx.querySelector("canvas.splat"),cx=cvA.getContext("2d"),cb=cvB.getContext("2d"),
 wrap=sec.querySelector(".wrap"),awrap=ab.querySelector(".wrap"),h2=ab.querySelector("h2"),
 items=[].slice.call(wrap.children).filter(function(e){return e.tagName==="DIV"}),
 H=[],T=null,N=20,RC=8,nodes=[],spikes=[],spat=[],drips=[],
 tgt=0,st=0,mS=1,op=0,dq=0,dqS=0,vis=false,raf=0,dpr=1,W=0,CA=0,BT=0,BH=0,t0=performance.now(),splashT=-1,unT=-1,bClear=true;
+var cvD=fx.querySelector("canvas.stream"),cd=cvD.getContext("2d"),DT=0,DH=0,BY=0,cvC=fx.querySelector("canvas.drop"),cc=cvC.getContext("2d"),h3=d.querySelector("#products h2"),pw=d.querySelector("#products .wrap"),oc=d.createElement("canvas"),oo=oc.getContext("2d"),T2=null,FONT="",BASE=0,TXT="",CT=0,CH=0,OT=0,OH=0,O1={x:0,y:0},sp2=[],fg2=[],s2T=-1,u2T=-1,dq2=0,dqS2=0;
 function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
 function sm(x){x=clamp(x,0,1);return x*x*(3-2*x)}
 function eo(x){x=clamp(x,0,1);return 1-Math.pow(1-x,3)}
@@ -256,6 +258,19 @@ function measure(){
  for(k=0;k<16;k++){var a=k/16*6.2832+(R()-.5)*.25;spikes.push({a:a,L:(14+R()*40)*(.5+Math.abs(Math.cos(a))*.9),w:.05+R()*.07})}
  for(k=0;k<18;k++){var a2=R()*6.2832,c=Math.abs(Math.cos(a2));spat.push({a:a2,dist:(46+R()*80)*(.55+.75*c),r:3.8+R()*2.6,tf:.3+R()*.35,dl:R()*.08,sag:8+R()*18})}
  var xs=[-.55,-.2,.22,.58];for(k=0;k<4;k++)drips.push({xo:xs[k]+(R()-.5)*.12,L:10+R()*18,dl:.45+R()*.5});
+
+ h3.style.display="inline-block";var tw2=h3.offsetWidth,th2=h3.offsetHeight;h3.style.display="";
+ var pp=pos(pw),p3=pos(h3),cs=getComputedStyle(h3);FONT=cs.fontStyle+" "+cs.fontWeight+" "+cs.fontSize+" "+cs.fontFamily;TXT=h3.textContent.trim();
+ cc.font=FONT;var mt=cc.measureText(TXT),fs=parseFloat(cs.fontSize),asc=mt.fontBoundingBoxAscent||fs*.8,dsc=mt.fontBoundingBoxDescent||fs*.2;
+ BASE=p3.y+(th2-(asc+dsc))/2+asc;
+ T2={x:pp.x+pw.offsetWidth/2,y:p3.y+th2/2,rx:Math.min(tw2/2*.95+12,W/2-14),ry:th2/2*1.15+8};
+ var xo2=drips[2].xo;O1={x:T.x+T.rx*xo2,y:T.y+T.ry*Math.sqrt(1-xo2*xo2)*.9+drips[2].L};
+ CT=Math.max(0,Math.floor(O1.y-30));CH=Math.ceil(T2.y+70-CT);cvC.style.top=CT+"px";cvC.style.height=CH+"px";cvC.width=W*dpr;cvC.height=CH*dpr;cc.setTransform(dpr,0,0,dpr,0,-CT*dpr);
+ BY=pos(d.getElementById("products")).y;DT=Math.max(0,Math.floor(H[H.length-1].y-30));DH=Math.ceil(T.y+T.ry+30-DT);cvD.style.top=DT+"px";cvD.style.height=DH+"px";cvD.width=W*dpr;cvD.height=DH*dpr;cd.setTransform(dpr,0,0,dpr,0,-DT*dpr);
+ OT=Math.max(0,Math.floor(T2.y-110));OH=220;oc.width=W*dpr;oc.height=OH*dpr;oo.setTransform(dpr,0,0,dpr,0,-OT*dpr);
+ var R2=rnd(23);sp2=[];fg2=[];
+ for(k=0;k<14;k++){var a3=k/14*6.2832+(R2()-.5)*.3;fg2.push({a:a3,L:(20+R2()*46)*(.4+Math.abs(Math.cos(a3))*1.5),w:.04+R2()*.07})}
+ for(k=0;k<52;k++){var a4=R2()*6.2832,c4=Math.abs(Math.cos(a4));sp2.push({a:a4,dist:(10+R2()*T2.rx*1.05)*(.35+.9*c4),r:1.6+R2()*4.8,tf:.28+R2()*.4,dl:R2()*.1,sag:4+R2()*14})}
  if(!nodes.length){var p=pose(0);for(var i=0;i<N;i++)nodes.push({x:p.x,y:p.y})}
  read()}
 function pose(t){
@@ -270,7 +285,8 @@ function read(){
  tgt=clamp((start-r.top)/(start-endTop),0,1)*(items.length-1);
  op=clamp((vh*.97-r.top)/(vh*.1),0,1);
  var hc=fr.top+T.y,hs=vh*.62+(T.y-(pos(sec).y+sec.offsetHeight)),he=vh*.42;
- dq=clamp((hs-hc)/(hs-he),0,1)}
+ dq=clamp((hs-hc)/(hs-he),0,1);
+ var hc2=fr.top+T2.y,hs2=vh*.42+(T2.y-T.y),he2=vh*.55;dq2=clamp((hs2-hc2)/(hs2-he2),0,1)}
 function blob(c,x0,y0,rx,ry,wob,t){c.beginPath();for(var k=0;k<=48;k++){var th=k/48*Math.PI*2,w=1+wob*(.06*Math.sin(3*th+t*1.4)+.045*Math.sin(5*th-t*1.9)+.03*Math.sin(2*th+t*.9));
  var x=x0+Math.cos(th)*rx*w,y=y0+Math.sin(th)*ry*w;k?c.lineTo(x,y):c.moveTo(x,y)}c.closePath();c.fill()}
 function dot(c,x,y,r){c.beginPath();c.arc(x,y,r,0,6.2832);c.fill()}
@@ -292,6 +308,44 @@ function splat(now){
  for(i=0;i<drips.length;i++){var dp=drips[i],ln=dp.L*eo((s-dp.dl)/1.6);if(ln<=0)continue;var dx=T.x+T.rx*dp.xo,dy=T.y+T.ry*Math.sqrt(1-dp.xo*dp.xo)*.9;
   cb.beginPath();cb.moveTo(dx,dy);cb.lineTo(dx,dy+ln);cb.stroke();dot(cb,dx,dy+ln,3.8+1.2*ln/dp.L)}}
  if(unT<0&&s>.28&&!h2.classList.contains("painted"))h2.classList.add("painted")}
+function splat2(now){
+ var s,shr=1;
+ if(u2T>=0){var k=(now-u2T)/300;if(k>=1){s2T=-1;u2T=-1;return}shr=1-eo(k);s=3}else s=(now-s2T)/1000;
+ oo.clearRect(0,OT,W,OH);oo.fillStyle="#fffdf7";
+ var E=eo(s/.45)*(1+.07*Math.sin(clamp(s/.45,0,1)*Math.PI))*shr,rx=T2.rx*.46*E,ry=T2.ry*.95*E,ext=eo(s/.4)*(1-.2*sm((s-.4)/.5))*shr,i,j,N2=200;
+ oo.beginPath();
+ for(i=0;i<=N2;i++){var th=i/N2*6.2832,w=1+.09*Math.sin(3*th+.7)+.06*Math.sin(5*th+1.9)+.05*Math.sin(8*th+.2),f=0;
+  for(j=0;j<fg2.length;j++){var q=fg2[j],dl=Math.atan2(Math.sin(th-q.a),Math.cos(th-q.a));f+=q.L*ext*Math.exp(-dl*dl/(2*q.w*q.w))}
+  var x=T2.x+Math.cos(th)*(rx*w+f),y=T2.y+Math.sin(th)*(ry*w+f*.9);i?oo.lineTo(x,y):oo.moveTo(x,y)}
+ oo.closePath();oo.fill();
+ for(i=0;i<sp2.length;i++){var o=sp2[i],u=clamp((s-.04-o.dl)/o.tf,0,1);if(u<=0)continue;var e2=eo(u),x0=T2.x+Math.cos(o.a)*T2.rx*.3,y0=T2.y+Math.sin(o.a)*T2.ry*.3;
+  oo.beginPath();oo.arc(x0+Math.cos(o.a)*o.dist*e2,y0+Math.sin(o.a)*o.dist*e2*.9+o.sag*u*u,o.r*(1-.2*u)*shr,0,6.2832);oo.fill()}
+ oo.globalCompositeOperation="destination-in";oo.font=FONT;oo.textAlign="center";oo.textBaseline="alphabetic";oo.fillStyle="#000";oo.fillText(TXT,T2.x,BASE);oo.globalCompositeOperation="source-over";
+ cc.drawImage(oc,0,OT,W,OH)}
+/* 3D glass bead: drawn on the canvas that sits BEHIND all text */
+var pq=0,pf=0,fT=-1;
+function cl(r,g,b,t,a){return"rgba("+Math.round(r+(255-r)*t)+","+Math.round(g+(253-g)*t)+","+Math.round(b+(247-b)*t)+","+a+")"}
+function bead(c,x,y,r,s,al,t){
+ var sq=s<0,rx=sq?r*(1-.7*s):r*(1-.1*s),ry=sq?r*(1+.45*s):r*(1+.3*s),tip=-ry-(sq?0:r*1.5*s);
+ c.save();c.translate(x,y);c.globalAlpha=al;c.beginPath();
+ if(sq||s<.05)c.ellipse(0,0,rx,ry,0,0,6.2832);
+ else{c.moveTo(0,tip);c.bezierCurveTo(rx*.12,tip*.45,rx,-ry*.55,rx,0);c.ellipse(0,0,rx,ry,0,0,Math.PI);c.bezierCurveTo(-rx,-ry*.55,-rx*.12,tip*.45,0,tip);c.closePath()}
+ var g=c.createRadialGradient(-rx*.35,-ry*.35,rx*.1,0,0,Math.max(rx,ry)*1.25);
+ g.addColorStop(0,cl(244,252,236,t,.95));g.addColorStop(.4,cl(125,160,105,t,.88));g.addColorStop(1,cl(60,88,52,t,.95));
+ c.shadowColor="rgba(31,42,36,.28)";c.shadowBlur=10;c.shadowOffsetY=5;c.fillStyle=g;c.fill();
+ c.shadowColor="transparent";c.shadowBlur=0;c.shadowOffsetY=0;
+ c.fillStyle="rgba(255,255,255,.9)";c.beginPath();c.ellipse(-rx*.38,-ry*.38,rx*.2,ry*.3,-.5,0,6.2832);c.fill();
+ c.strokeStyle="rgba(255,255,255,.35)";c.lineWidth=1.2;c.beginPath();c.ellipse(0,0,rx*.78,ry*.78,0,.15*Math.PI,.85*Math.PI);c.stroke();
+ c.restore()}
+function drop2(){
+ var q=dqS2,v=q-pq;pq=q;
+ var R=T2.y-O1.y,y=O1.y+R*Math.pow(q,1.6),
+  x=O1.x+(T2.x-O1.x)*sm((y-(T2.y-120))/110)+Math.sin(y*.02)*1.5,
+  r=3.5+5.5*sm(q/.12),
+  s=clamp(.25+Math.abs(v)*30,0,.9)*(1-sm((q-.9)/.08))-.5*sm((q-.9)/.08),
+  t=sm((q-.8)/.2);
+ if(q<.12){cd.strokeStyle="rgba(100,135,85,.55)";cd.lineWidth=2;cd.lineCap="round";cd.beginPath();cd.moveTo(O1.x,O1.y-4);cd.lineTo(x,y);cd.stroke()}
+ bead(cd,x,y,r,s,.85,t)}
 function frame(now){
  raf=0;if(!H.length||!vis)return;
  var t=(now-t0)/1000,last=H.length-1;st+=(tgt-st)*.13;dqS+=(dq-dqS)*.18;
@@ -305,16 +359,21 @@ function frame(now){
   for(k=N-1;k>=1;k--){var a2=nodes[k-1],b2=nodes[k],r=Math.max(3,RC*(1-k/N*.6))*sc,dx=a2.x-b2.x,dy=a2.y-b2.y,steps=Math.max(1,Math.ceil(Math.hypot(dx,dy)/3));
    for(var j=0;j<steps;j++)dot(cx,b2.x+dx*j/steps,b2.y+dy*j/steps,r)}
   var m=mS;blob(cx,p.x,p.y,(RC+(p.rx-RC)*m)*sc,(RC+(p.ry-RC)*m)*sc,m,t)}
- if(dqS>.02){
-  var u=clamp((dqS-.2)/.8,0,1),fall=Math.pow(u,1.7),A=H[last],Dx=A.x+(T.x-A.x)*fall,Dy=A.y+(T.y-A.y)*fall,rd=RC*(.6+.85*sm(dqS/.15)),
-   ds=splashT>=0?Math.max(0,1-(performance.now()-splashT)/100):1;
-  cx.fillStyle=mix(u*1.4);
-  var nw=1-sm(fall/.35);
-  if(nw>.03&&dqS>.05){var dd=Math.hypot(Dx-A.x,Dy-A.y),stp=Math.max(1,Math.ceil(dd/3));for(k=0;k<=stp;k++){var sv=k/stp,rr=Math.max(3,rd*.85*nw*(1-.5*sv));dot(cx,A.x+(Dx-A.x)*sv,A.y+(Dy-A.y)*sv,rr)}}
-  if(ds>0){dot(cx,Dx,Dy,rd*ds);var v=Math.min(1,fall*4);if(v>.1)for(k=1;k<=4;k++)dot(cx,Dx,Dy-k*rd*.5*v,rd*(1-k*.2)*ds)}}
- if(splashT<0&&dqS>.985&&unT<0){splashT=performance.now()}
- if(splashT>=0&&unT<0&&dq<.9)unT=performance.now();
+ cd.clearRect(0,DT,W,DH);
+ if(fT<0&&splashT<0&&unT<0&&dq>.05)fT=performance.now();
+ if(fT>=0&&dq<.02)fT=-1;
+ if(splashT>=0&&unT<0&&dq<.02)unT=performance.now();
+ if(fT>=0){var A=H[last],B=performance.now(),P=(B-fT)/700;
+  if(P>=1){fT=-1;splashT=B}
+  else{
+   var pt=function(q){return{x:A.x+(T.x-A.x)*sm(q*q*1.1),y:A.y+(T.y-A.y)*q*q}},c0=pt(P),c1=pt(Math.max(0,P-.03)),
+    ang=Math.atan2((c0.y-c1.y)||.01,c0.x-c1.x)-1.5708,tr=9+2*P,th2=tr*(2.1+1.4*P),col=mix(P*1.4);
+   cd.fillStyle=col;cd.strokeStyle=col;
+   if(P<.25){var nk=1-P/.25;cd.lineCap="round";cd.lineWidth=tr*1.1*nk;cd.beginPath();cd.moveTo(A.x,A.y);cd.lineTo(c0.x,c0.y);cd.stroke()}
+   cd.save();cd.translate(c0.x,c0.y);cd.rotate(ang);cd.beginPath();cd.moveTo(0,-th2);
+   cd.bezierCurveTo(tr*.3,-th2*.5,tr,-tr*.9,tr,0);cd.ellipse(0,0,tr,tr*1.12,0,0,Math.PI);cd.bezierCurveTo(-tr,-tr*.9,-tr*.3,-th2*.5,0,-th2);cd.fill();cd.restore()}}
  if(splashT>=0)splat(performance.now());
+ cvD.style.opacity=op;
  cvA.style.opacity=op*.95;cvB.style.opacity=op;
  raf=requestAnimationFrame(frame)}
 function run(){if(!raf&&vis&&H.length)raf=requestAnimationFrame(frame)}
@@ -323,6 +382,17 @@ addEventListener("scroll",function(){read();run()},{passive:true});
 addEventListener("resize",measure);addEventListener("load",measure);
 if(d.fonts&&d.fonts.ready)d.fonts.ready.then(measure);
 measure();
+/* downward scroll speed limit: from the values section until the splash has finished; upward is never limited */
+var MAXV=650,lt=performance.now(),ly=scrollY,rel=false;
+function lim(now){
+ var dt=Math.min(.1,(now-lt)/1000),y=scrollY;lt=now;
+ if(splashT<0)rel=false;else if(unT<0&&now-splashT>1100)rel=true;
+ if(y<ly){ly=y}
+ else if(T&&!rel){
+  var top=sec.getBoundingClientRect().top,endY=fx.getBoundingClientRect().top+y+T.y+innerHeight*.5;
+  if(top<innerHeight&&y<endY){var cap=ly+MAXV*dt;if(y>cap){scrollTo({top:cap,behavior:"instant"});y=cap}}}
+ ly=y;requestAnimationFrame(lim)}
+requestAnimationFrame(lim);
 })();
 </script>
 </body></html>
