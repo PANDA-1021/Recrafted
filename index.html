@@ -323,7 +323,7 @@ function splat2(now){
  oo.globalCompositeOperation="destination-in";oo.font=FONT;oo.textAlign="center";oo.textBaseline="alphabetic";oo.fillStyle="#000";oo.fillText(TXT,T2.x,BASE);oo.globalCompositeOperation="source-over";
  cc.drawImage(oc,0,OT,W,OH)}
 /* 3D glass bead: drawn on the canvas that sits BEHIND all text */
-var pq=0,pf=0,fT=-1;
+var pq=0,pf=0,fT=-1,gT=-1;
 function cl(r,g,b,t,a){return"rgba("+Math.round(r+(255-r)*t)+","+Math.round(g+(253-g)*t)+","+Math.round(b+(247-b)*t)+","+a+")"}
 function bead(c,x,y,r,s,al,t){
  var sq=s<0,rx=sq?r*(1-.7*s):r*(1-.1*s),ry=sq?r*(1+.45*s):r*(1+.3*s),tip=-ry-(sq?0:r*1.5*s);
@@ -355,6 +355,7 @@ function frame(now){
  var tl=nodes[N-1],td=Math.hypot(tl.x-p.x,tl.y-p.y),gate=1-sm((td-4)/36);mS+=(p.m*gate-mS)*.22;
  cx.clearRect(0,0,W,CA);
  var sc=1-sm((dqS-.05)/.35);
+ if(fT>=0||splashT>=0){if(gT<0)gT=performance.now();sc=Math.min(sc,1-eo((performance.now()-gT)/320))}else gT=-1;
  if(sc>.01){cx.fillStyle="#fffdf7";
   for(k=N-1;k>=1;k--){var a2=nodes[k-1],b2=nodes[k],r=Math.max(3,RC*(1-k/N*.6))*sc,dx=a2.x-b2.x,dy=a2.y-b2.y,steps=Math.max(1,Math.ceil(Math.hypot(dx,dy)/3));
    for(var j=0;j<steps;j++)dot(cx,b2.x+dx*j/steps,b2.y+dy*j/steps,r)}
