@@ -92,7 +92,8 @@ canvas.drop{z-index:3}canvas.fluid{filter:url(#goo)}canvas.splat{filter:url(#goo
 .pc:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(260px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.55),transparent 60%);opacity:0;transition:opacity .3s}.pc:hover:before{opacity:1}
 .im{position:relative;height:190px;margin:10px;border-radius:16px;background:radial-gradient(90% 80% at 50% 35%,#fbf7ec,var(--linen));display:grid;place-items:center;overflow:hidden}
 .im svg{width:80%;height:100%;transition:transform .6s var(--e)}.pc:hover .im svg{transform:scale(1.07) translateY(-4px)}
-.im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.im{height:220px}.im img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1}
+.im.ph:before{content:"";position:absolute;inset:-24px;background:var(--bg) center/cover;filter:blur(18px) saturate(1.1);opacity:.85}.im.ph svg{opacity:0}
 .bd{padding:4px 20px 20px}.pc h3{margin:0;font-size:1.25rem}.m{font-size:.85rem;color:var(--mute);margin:4px 0}.pc p{font-size:.88rem;margin:0 0 6px;color:var(--mute)}.pr{font-size:.9rem;color:var(--mute);margin-bottom:8px}
 /* process */
 .steps{max-width:640px;margin:44px auto 0;padding-left:68px}
@@ -397,5 +398,9 @@ function lim(now){
  ly=y;requestAnimationFrame(lim)}
 requestAnimationFrame(lim);
 })();
+</script>
+<script>
+document.querySelectorAll(".im img").forEach(function(i){function ok(){if(i.naturalWidth){var p=i.parentNode;p.style.setProperty("--bg","url('"+i.currentSrc.replace(/'/g,"%27")+"')");p.classList.add("ph")}}
+if(i.complete)ok();else i.addEventListener("load",ok)});
 </script>
 </body></html>
